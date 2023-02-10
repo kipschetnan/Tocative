@@ -1,0 +1,78 @@
+
+.registerContainer {
+    width: 100%;
+    padding: 30px;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.registerForm {
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    border-radius: 10px;
+    
+}
+
+.registerTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.backLink {
+    font-size: 24px;
+    align-self: center;
+    text-decoration: none;
+}
+
+.text h1 {
+    font-weight: 500;
+}
+
+.text p {
+    font-weight: 300;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: lightgrey;
+}
+
+.input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px; 
+    color: #1d2129;   
+}
+
+.signupButton {
+    margin: 10px 0px;
+}
+
+.registerButton {
+    height: 60px;    
+    background-color: #42b72a;
+    border-radius: 6px;
+    font-size: 17px;
+    color: white;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    align-self: center;
+}
+
+.registerButton:hover {
+    filter: brightness(90%);
+}
+
