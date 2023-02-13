@@ -1,27 +1,49 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
 import './App.css';
-import Login from '../src/pages/login/Login'
+import LoginPage from './pages/login/LoginPage';
+import RegisterPage from './pages/register/RegisterPage';
 
 function App() {
+
   return (
     <Router>
-        <div className="App">
+      <div className="App">
+        
           <div className='wrapper'>
             <div className='container'>
+              
+
               <Switch>
+
                 <Route exact path='/'>
-                  <Login />
+                  <div className='loginWrapper'>
+                    <LoginPage />
+                  </div>
                 </Route>
 
-                <Route path='/'>
-                  <Login />
+                <Route exact path='/login'>
+                  <div className='loginWrapper'>
+                    <LoginPage />
+                  </div>
                 </Route>
+
+
+
+                <Route path='/register'>
+                  <div className='loginWrapper'>
+                    <RegisterPage />
+                  </div>
+                </Route>
+
               </Switch>
+
+              
+              
             </div>
           </div>
-        </div>
+
+      </div>
     </Router>
-    
   );
 }
 
