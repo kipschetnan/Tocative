@@ -18,3 +18,4 @@ const typeDefs = gql`
     username: String
   }
 `
+module.exports = typeDefs
