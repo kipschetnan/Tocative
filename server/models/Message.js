@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, mongoose } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const messageSchema = new Schema(
@@ -15,13 +15,12 @@ const messageSchema = new Schema(
         },
         sender: {
             type: String,
-            ref: "User",
-            required: true,
+            required: true
         },
-        recipient: {
-            type: String,
-            ref: "User",
+        conversation: {
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
+            ref: 'Conversation'
         }
     },
     {
