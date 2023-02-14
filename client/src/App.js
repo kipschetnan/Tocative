@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
 import './App.css';
 import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
+import HomePage from './pages/home/HomePage';
+import Chats from './pages/chats/Chats';
 
 function App() {
 
@@ -33,6 +35,14 @@ function App() {
                   <div className='loginWrapper'>
                     <RegisterPage />
                   </div>
+                </Route>
+
+                <Route path='/chats'>
+                  
+                  <div className='loginWrapper'>
+                    <Chats />
+                  </div>
+
                 </Route>
 
               </Switch>
