@@ -1,0 +1,58 @@
+[
+    {
+        "firstName": "Rob",
+        "lastName": "Johnson",
+        "username": "robj12",
+        "password": "oqwald12",
+        "messages": [],
+        "friends": []
+    },
+    {
+        "firstName": "Molly",
+        "lastName": "Thomas",
+        "username": "mj123",
+        "password": "dskslvmdlas",
+        "messages": [],
+        "friends": []
+    },
+    {
+        "firstName": "Josue",
+        "lastName": "Garcia",
+        "username": "josue6785",
+        "password": "skdvnjdsk",
+        "messages": [],
+        "friends": []
+    },
+    {
+        "firstName": "Colt",
+        "lastName": "Windler",
+        "username": "colt.windler",
+        "password": "fkcnvmda",
+        "messages": [],
+        "friends": []
+    },
+    {
+        "firstName": "Berta",
+        "lastName": "Schmeler",
+        "username": "berta.schmeler",
+        "password": "ssdldcmqer",
+        "messages": [],
+        "friends": []
+    },
+    {
+        "firstName": "Bryana",
+        "lastName": "Hackett",
+        "username": "BryanaH",
+        "password": "sakldkvoxp",
+        "messages": [],
+        "friends": []
+    },
+    {
+        "firstName": "Vladimir",
+        "lastName": "Block",
+        "username": "vlad_block",
+        "password": "asdkcmvngr",
+        "messages": [],
+        "friends": []
+    }
+]
