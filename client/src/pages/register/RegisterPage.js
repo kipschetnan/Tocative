@@ -20,8 +20,12 @@ const RegisterPage = () => {
         console.log(data)
     }
   return (
+
+
     <div className='registerContainer'>
+
         <Formik initialValues={initialValues} onSubmit={onSubmit}  validationSchema={registerSchema}>
+            
             <Form className='registerForm' >
 
                 <div className='registerTitle'>
@@ -46,7 +50,9 @@ const RegisterPage = () => {
                 </div>
 
             </Form> 
+        
         </Formik>
+
     </div>
   )
 }
