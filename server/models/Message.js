@@ -13,10 +13,16 @@ const messageSchema = new Schema(
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
         },
-        username: {
-            type: String,
-            required: true
+        sender: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
         },
+        recipient: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        }
     },
     {
         toJSON: {
