@@ -2,10 +2,10 @@ const { Schema, model } = require('mongoose');
 
 const conversationSchema = new Schema({
     participants: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-        }
+      {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+      }
     ],
     messages: [
       {
