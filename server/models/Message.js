@@ -14,12 +14,12 @@ const messageSchema = new Schema(
             get: timestamp => dateFormat(timestamp)
         },
         sender: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             ref: "User",
             required: true,
         },
         recipient: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             ref: "User",
             required: true,
         }
