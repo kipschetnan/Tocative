@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Messages } = require('../models');
+const User = require('../models/User');
+const Message = require('../models/Message');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -23,7 +24,7 @@ const resolvers = {
           .populate('friends')
       },
       message: async (parent, { _id }) => {
-        return Messages.findOne({ _id });
+        return Message.findOne({ _id });
       }
     }
 }
