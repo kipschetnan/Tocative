@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, mongoose} = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
@@ -24,13 +24,13 @@ const userSchema = new Schema(
         },
         messages: [
             {
-                type: Schema.Types.ObjectID,
-                ref: 'messages'
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Message'
             }
         ],
         friends: [
             {
-                type: Schema.Types.ObjectID,
+                type: mongoose.Schema.Types.ObjectId,
                 ref: 'User'
             }
         ]

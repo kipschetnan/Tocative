@@ -9,7 +9,8 @@ const resolvers = {
       me: async (parent, args, context) => {
         if (context.user) {
           const userData = await User.findOne({ _id: context.user._id })
-            .populate('friends');
+            .populate('friends')
+            .populate('messages')
   
           return userData;
         }
@@ -18,7 +19,8 @@ const resolvers = {
       },
       users: async () => {
         return User.find()
-          .populate('friends');
+          .populate('friends')
+          .populate('messages');
       },
       user: async (parent, { username }) => {
         return User.findOne({ username })
@@ -31,7 +33,7 @@ const resolvers = {
         return Message.find()
       },
       conversations: async () => {
-        return Conversation.find()
+        return Conversation.find().populate('messages').populate('participants')
       }
     },
     Mutation: {
@@ -42,7 +44,7 @@ const resolvers = {
         return { token, user };
       },
       login: async (parent, { username, password }) => {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
   
         if (!user) {
           throw new AuthenticationError('Incorrect credentials');
@@ -59,13 +61,20 @@ const resolvers = {
       },
       addMessage: async (parent, args, context) => {
         if (context.user) {
-          const message = await Message.create({ ...args, username: context.user.username });
+          const message = await Message.create({ ...args, sender: context.user.username });
   
           await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { messages: message._id } },
             { new: true }
           );
+
+          await Conversation.findByIdAndUpdate(
+            {_id: args.conversation},
+            {$push: {messages: message._id}},
+            {new: true}
+
+          )
   
           return message;
         }
@@ -83,3 +92,5 @@ const resolvers = {
       }
     }
 }
+
+module.exports = resolvers
