@@ -1,0 +1,13 @@
+.chatsContainer {
+    height: 100vh;
+    width: 100%;
+}
+
+.chats {
+    width: 100%;
+    background-color: transparent;
+    height: 100vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}

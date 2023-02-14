@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const messagesSchema = new Schema(
+const messageSchema = new Schema(
     {
         messageText: {
             type: String,
@@ -13,10 +13,16 @@ const messagesSchema = new Schema(
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
         },
-        username: {
-            type: String,
-            required: true
+        sender: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
         },
+        recipient: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        }
     },
     {
         toJSON: {
@@ -25,6 +31,6 @@ const messagesSchema = new Schema(
     }
 );
 
-const Messages = model('Messages', messagesSchema);
+const Message = model('Message', messageSchema);
 
-module.exports = Messages;
+module.exports = Message;
