@@ -1,0 +1,17 @@
+[
+    {
+        "messageText":"Hey what's up",
+        "sender":"robj12",
+        "recipient":"colt.windler"
+    },
+    {
+        "messageText":"Hello",
+        "sender":"mj123",
+        "recipient":"colt.windler"
+    },
+    {
+        "messageText":"Hi",
+        "sender":"colt.windler",
+        "recipient":"robj12"
+    }
+]
