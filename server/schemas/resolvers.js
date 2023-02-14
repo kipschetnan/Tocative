@@ -57,6 +57,29 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       },
-      addMessage: async
+      addMessage: async (parent, args, context) => {
+        if (context.user) {
+          const message = await Message.create({ ...args, username: context.user.username });
+  
+          await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $push: { messages: message._id } },
+            { new: true }
+          );
+  
+          return message;
+        }
+  
+        throw new AuthenticationError('You need to be logged in!');
+      },
+      updateUser: async (_, { id, ...rest }) => {
+        return User.findByIdAndUpdate(id, rest, {new: true })
+      },
+      createConversation: async (_, args) => {
+        return Conversation.create(args)
+      },
+      deleteConversation: async (_, { id }) => {
+        return Conversation.findByIdAndRemove(id)
+      }
     }
 }
