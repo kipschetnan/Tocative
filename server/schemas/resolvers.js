@@ -37,7 +37,7 @@ const resolvers = {
       }
     },
     Mutation: {
-      createUser: async (_, args) => {
+      addUser: async (_, args) => {
         const user = await User.create(args);
         const token = signToken(user);
 
@@ -87,8 +87,38 @@ const resolvers = {
       createConversation: async (_, args) => {
         return Conversation.create(args)
       },
-      deleteConversation: async (_, { id }) => {
+      removeConversation: async (_, { id }) => {
         return Conversation.findByIdAndRemove(id)
+      },
+      addFriend: async (parent, { friendId }, context) => {
+        if (context.user) {
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { friends: friendId } },
+            { new: true }
+          ).populate('friends');
+
+          return updatedUser;
+        }
+
+        throw new AuthenticationError('You need to be logged in!');
+      },
+      removeFriend: async (_, { friendId }, context) => {
+        try {
+          const currentUser = await User.findById(context.id);
+          const friendIndex = currentUser.friends.indexOf(friendId);
+  
+          if (friendIndex === -1) {
+            throw new Error("Friend not found");
+          }
+  
+          currentUser.friends.splice(friendIndex, 1);
+          await currentUser.save();
+  
+          return "Friend removed successfully";
+        } catch (err) {
+          throw new Error(err);
+        }
       }
     }
 }
