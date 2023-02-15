@@ -13,7 +13,7 @@ const Chats = () => {
             
             <div className='chatList'>
 
-                <h3>My conversations:</h3>
+                <h3 id="label">My conversations:</h3>
                 <div className='list'>
                     <Chat name='Name' />
                     <Chat name='Name' />

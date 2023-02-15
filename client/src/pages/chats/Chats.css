@@ -4,8 +4,10 @@
 }
 
 .chats {
+    background-image: url("./images/Untitled_Artwork.jpeg");
+    background-size: cover;
+    repeat: no-repeat;
     width: 100%;
-    background-color: transparent;
     height: 100vh;
     padding: 30px;
     display: flex;
@@ -13,6 +15,10 @@
     gap: 15px;
     position: relative;
 
+}
+
+#label{
+    color:#fcfcfc;
 }
 
 .chatList {
