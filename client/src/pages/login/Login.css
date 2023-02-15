@@ -1,3 +1,13 @@
+.loginWrapper {
+    background-image: url("./images/bg-img.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+}
+#label{
+    color:#fcfcfc;
+}
+
 .loginContainer {
     width: 100%;
     height: 100vh;
@@ -11,18 +21,18 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
 
 .formContainer {
-    background-color: #fff;
     padding: 30px;
     display: flex;
     flex-direction: column;
     align-self: center;
     border-radius: 8px;
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    
 }
+
 
 .inputs {
     display: flex;
@@ -35,8 +45,7 @@
     width: 100%;
     padding: 15px;
     border: 1px solid #dddfe2;
-    border-radius: 6px; 
-    color: #1d2129;   
+    border-radius: 6px;  
     
 }
 
@@ -95,6 +104,7 @@
     display: flex;
     justify-content: center;
     padding: 15px 0px;
+    width: 500px;
     
 }
 
@@ -117,3 +127,4 @@ span {
         width: 60%;
     }
 }
+

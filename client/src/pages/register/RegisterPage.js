@@ -63,10 +63,12 @@ const RegisterPage = () => {
                 </div>
 
                 <div className='line'></div>
-                <label>Username: </label>
+                <label id="label">Username: </label>
                 <ErrorMessage name='username' component='span'/>
+
                 <Field className='input' id='username'  name='username' placeholder='Admin' value={formState.username} onChange={handleChange}/>
-                <label>Password: </label>
+                <label id="label">Password: </label>
+
                 <ErrorMessage name='password' component='span'/>
                 <Field className='input' id='password' type='password' name='password' placeholder='*********' value={formState.password} onChange={handleChange}/>
 

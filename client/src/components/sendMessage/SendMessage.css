@@ -1,0 +1,15 @@
+.sentBubble {
+    background-color: white;
+    width: 90%;
+    padding: 15px;
+    font-size: 14px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 10px;
+    float: right;
+    margin: 8px 0px;
+    box-shadow: 1.8px 1.8px 2.2px rgba(0,0,0,.052),4.3px 4.4px 5.3px rgba(0,0,0,.067),8px 8.3px 10px rgba(0,0,0,.073),14.3px 14.7px 17.9px rgba(0,0,0,.075),26.7px 27.6px 33.4px rgba(0,0,0,.073),64px 66px 80px rgba(0,0,0,.07);
+
+
+
+}

@@ -6,6 +6,9 @@ import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
 import Messages from './pages/messages/messages'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import Messages from './pages/messages/Messages'
+import ProfilePage from './pages/profile/Profile';
+import { io } from 'socket.io-client'
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -13,6 +16,16 @@ const client = new ApolloClient({
 })
 
 function App() {
+
+  const io = require('socket.io-client')
+
+
+  var socket = io('http://localhost:3001', { transports: ['websocket'] });
+  
+  const currentRoom = 'TEST SERVER'
+  
+  const session = socket.emit('join_room', currentRoom)
+
 
   return (
     <ApolloProvider client={client}>
@@ -31,6 +44,7 @@ function App() {
                   </div>
                 </Route>
 
+
                 <Route exact path='/login'>
                   <div className='loginWrapper'>
                     <LoginPage />
@@ -38,12 +52,12 @@ function App() {
                 </Route>
 
 
-
                 <Route path='/register'>
                   <div className='loginWrapper'>
                     <RegisterPage />
                   </div>
                 </Route>
+
 
                 <Route path='/chats'>
                   
@@ -53,11 +67,20 @@ function App() {
 
                 </Route>
 
+
                 <Route path='/messages'>
                   <div>
-                    <Messages />
+                    <Messages socket={socket} currentRoom={currentRoom} />
                   </div>
                 </Route>
+
+
+                <Route path ='/profile'>
+                  <div className='loginWrapper'>
+                    <ProfilePage />
+                  </div>
+                </Route>
+
 
               </Switch>
 
