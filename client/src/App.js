@@ -5,11 +5,18 @@ import RegisterPage from './pages/register/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
 import Messages from './pages/messages/messages'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000/graphql',
+  cache: new InMemoryCache()
+})
 
 function App() {
 
   return (
-    <Router>
+    <ApolloProvider client={client}>
+      <Router>
       <div className="App">
         
           <div className='wrapper'>
@@ -61,6 +68,8 @@ function App() {
 
       </div>
     </Router>
+    </ApolloProvider>
+    
   );
 }
 
