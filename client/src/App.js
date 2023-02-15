@@ -4,6 +4,7 @@ import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
+import Messages from './pages/messages/messages'
 
 function App() {
 
@@ -43,6 +44,12 @@ function App() {
                     <Chats />
                   </div>
 
+                </Route>
+
+                <Route path='/messages'>
+                  <div>
+                    <Messages />
+                  </div>
                 </Route>
 
               </Switch>

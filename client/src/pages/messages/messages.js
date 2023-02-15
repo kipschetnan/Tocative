@@ -1,24 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import '../messages/messages.css'
 
-const Messages = ({ messages, username }) => {
-  if (!messages.length) {
-    return <h3>No Messages Yet</h3>;
-  }
-
+const messagePage = () => {
   return (
-    <div>
-      <h3>{username}</h3>
-      {messages &&
-        messages.map(message => (
-            <div className="card-body">
-              <Link to={`/messages/${message._id}`}>
-                <p>{message.messageText}</p>
-              </Link>
-            </div>
-        ))}
-    </div>
-  );
-};
+    <div className='messageContainer'>
+      <main className='chats'>
+        {/* This shows the current friend you are texting, will be displayed at top of screen */}
+        <div className='currentUser'>
 
-export default Messages;
+          <div className='avatar'>
+            <img src='' alt='Avatar'></img>
+          </div>
+          <div className='username'>
+            <h3> Your Friend's Username </h3>
+          </div>
+
+        </div>
+        {/* This will be the actual chat, will show messages */}
+        <div className='chatMessages'>
+
+                <p  className='recievedMessage'> How are you doing </p>
+                <p  className='sentMessage'> Not too good buddy </p>
+
+
+        </div>
+
+        <div>
+
+        </div>
+
+      </main>
+    </div>
+  )
+}
+
+export default messagePage
