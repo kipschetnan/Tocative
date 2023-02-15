@@ -3,6 +3,7 @@ import './Login.css'
 import { Formik, Form, Field, ErrorMessage,  } from 'formik'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
+import bgImage from "./images/bg-img.jpeg"
 
 const LoginPage = () => {
 
@@ -30,14 +31,13 @@ const LoginPage = () => {
             <Form className='formContainer'>
               <div className='loginSection'>
                 <div className='inputs'>
-                  <label >Username: </label>
+                  <label id="label">Username: </label>
                   <ErrorMessage name='username' component='span' />
                   <Field className='input'  placeholder='Admin' name='username' />
-                  <label>Password: </label>
+                  <label id="label">Password: </label>
                   <ErrorMessage name='password' component='span' />
                   <Field className='input' type='password' placeholder='***********' name='password'/>
                 </div>
-                
                 <button className='loginButton'>Log in </button>
 
                 <a className='resetLink' href='#'> Forgot password? </a>
