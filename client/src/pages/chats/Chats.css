@@ -1,9 +1,24 @@
 .chatsContainer {
     height: 100vh;
     width: 100%;
-    padding: 30px 0px;
     position: relative;
+    
 
+}
+
+.mainWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.mainContainer {
+    padding: 30px;
+
+   
 }
 
 .chats {
@@ -19,12 +34,17 @@
     gap: 10px;
     margin: 30px 0px;
     width: 100%;
+
 }
 
 .list {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    overflow: scroll;
+    height: 60vh;
+    width: 100%;
+    padding: 0px 15px;
 }
 
 .footer {
@@ -33,10 +53,10 @@
     text-align: center;
     width: 100%;
     display: flex;
-    justify-content: space-between;
     height: 10%;
     box-shadow: 0px -2px 30px -5px rgba(0,0,0,0.45);
     background-color: #FFFFFF;
+    font-size: 14px;
 }
 
 .tab {
@@ -81,4 +101,37 @@
     color: black;
     text-decoration: none;
 }
+
+#tab3 {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 0px 10px 0px 0px;
+}
+
+@media screen and (min-width: 600px) {
+    .mainContainer {
+      width: 80%;
+    }
+  }
+  @media screen and (min-width: 800px) {
+    .mainContainer {
+      width: 70%;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .mainContainer {
+      width: 60%;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .mainContainer {
+      width: 50%;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .mainContainer {
+      width: 50%;
+    }
+  }
 
