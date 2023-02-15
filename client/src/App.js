@@ -4,10 +4,23 @@ import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
-import Messages from './pages/messages/messages'
+import Messages from './pages/messages/Messages'
 import ProfilePage from './pages/profile/Profile';
 
+import { io } from 'socket.io-client'
+
+
 function App() {
+
+  const io = require('socket.io-client')
+
+
+  var socket = io('http://localhost:3001', { transports: ['websocket'] });
+  
+  const currentRoom = 'TEST SERVER'
+  
+  const session = socket.emit('join_room', currentRoom)
+
 
   return (
     <Router>
@@ -51,7 +64,7 @@ function App() {
 
                 <Route path='/messages'>
                   <div>
-                    <Messages />
+                    <Messages socket={socket} currentRoom={currentRoom} />
                   </div>
                 </Route>
 

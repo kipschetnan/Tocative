@@ -1,53 +1,113 @@
-.messageContainer {
-  display: grid;
-  grid-template-rows: 10% 80% 10%;
-  gap: 0.1rem;
-  overflow: hidden;
+.messagesContainer {
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
 }
 
-.chats {
+.liveChat {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  box-shadow: 1.8px 1.8px 2.2px rgba(0,0,0,.052),4.3px 4.4px 5.3px rgba(0,0,0,.067),8px 8.3px 10px rgba(0,0,0,.073),14.3px 14.7px 17.9px rgba(0,0,0,.075),26.7px 27.6px 33.4px rgba(0,0,0,.073),64px 66px 80px rgba(0,0,0,.07);
+  border-radius: 10px;
+  
+}
+
+.chatBody {
+  height: 50vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
+  
 }
 
-.currentUser {
+.header{
+  padding: 15px;
+  background-color: #C5D0CE;
+  border-radius: 10px 10px 0px 0px;
+  color: black;
+}
+
+.exitLink {
+  color: black;
+  text-decoration: none;
+}
+
+.exitLink:hover {
+  color: red;
+}
+
+.messagesBody {
+  padding: 15px;
+  height: 100%;
+  overflow: scroll;
+  background-color: #DBDBDB;
+  
+}
+
+.messageForm {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  
 }
 
-.username {
-  color:white;
+.messageForm input {
+  height: 100%;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 0px 0px 0px 10px;
+  border: none;
+  background-color: #F9FAFD;
+  outline: none;
+
 }
 
-.chatMessages {
-  padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow: auto;
-    display: flex;
-    align-items: center;
-    max-width: 40%;
-    overflow-wrap: break-word;
-    padding: 1rem;
-    font-size: 1.1rem;
-    border-radius: 1rem;
-    color: #d1d1d1;
+.messageForm button {
+  padding: 15px;
+  border-radius:  0px 0px 10px 0px;
+  border: none;
+  outline: none;
+  background-color: #F9FAFD;
+  transition: 0.3s;
+  cursor: pointer;
+
 }
 
-
-
-.recievedMessage {
-  justify-content: flex-start;
+.messageForm button:hover {
+  background-color: #D8DBDE;
 }
 
-.sentMessage {
-  justify-content: flex-end;
+@media screen and (min-width: 600px) {
+  .liveChat {
+    width: 80%;
+  }
 }
-
-p {
-  color: white
+@media screen and (min-width: 800px) {
+  .liveChat {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .liveChat {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .liveChat {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .liveChat {
+    width: 40%;
+  }
 }
