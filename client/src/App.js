@@ -5,6 +5,7 @@ import RegisterPage from './pages/register/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
 import Messages from './pages/messages/messages'
+import ProfilePage from './pages/profile/Profile';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                   </div>
                 </Route>
 
+
                 <Route exact path='/login'>
                   <div className='loginWrapper'>
                     <LoginPage />
@@ -31,12 +33,12 @@ function App() {
                 </Route>
 
 
-
                 <Route path='/register'>
                   <div className='loginWrapper'>
                     <RegisterPage />
                   </div>
                 </Route>
+
 
                 <Route path='/chats'>
                   
@@ -46,11 +48,20 @@ function App() {
 
                 </Route>
 
+
                 <Route path='/messages'>
                   <div>
                     <Messages />
                   </div>
                 </Route>
+
+
+                <Route path ='/profile'>
+                  <div className='loginWrapper'>
+                    <ProfilePage />
+                  </div>
+                </Route>
+
 
               </Switch>
 
