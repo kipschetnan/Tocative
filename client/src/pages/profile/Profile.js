@@ -2,7 +2,7 @@ import React from 'react'
 import './Profile.css'
 import Navbar from '../../components/Navbar/Navbar'
 
-const ProfilePage = () => {
+const ProfilePage = () => {      
     return (
         <div className='profileContainer'>
             <main className='userInfo'>
