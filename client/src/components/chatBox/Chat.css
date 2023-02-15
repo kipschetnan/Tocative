@@ -1,0 +1,24 @@
+.chatBox {
+    width: 100%;
+    background-color: #F9FAFD;
+    border-radius: 5px;
+    padding: 15px 10px;
+    font-size: 12px;
+    transition: 0.3s;
+    box-shadow: 0 0px 1px rgba(0,0,0,.11),0 2px 2px rgba(0,0,0,.11),0 3px 30px rgba(0,0,0,.11),0 6px 8px rgba(0,0,0,.11),0 14px 16px rgba(0,0,0,.11);
+
+
+    cursor: pointer;
+
+
+}
+
+.chatBox:hover {
+    filter: brightness(90%);
+}
+
+.chatInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

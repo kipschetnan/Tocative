@@ -13,6 +13,7 @@
     height: 80vh;
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     border-radius: 8px;
+    
 
 }
 
@@ -20,3 +21,4 @@
     display: flex;
     flex-direction: row;
 }
+
