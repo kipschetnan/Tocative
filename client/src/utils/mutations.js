@@ -61,3 +61,32 @@ export const REMOVE_FRIEND = gql`
     }
   }
 `;
+
+export const CREATE_CONVERSATION = gql`
+  mutation createConversation($participants: participants!) {
+    createConversation(participants: $participants){
+      _id
+      participants {
+        _id
+        username
+    }
+    }
+  }
+`
+
+export const REMOVE_CONVERSATION = gql`
+  mutation removeConversation($id: id) {
+    removeConversation(id: $id) {
+      _id
+    }
+  }
+`
+
+export const UPDATE_USER = gql`
+  mutation updateUser($id: id, $username: username) {
+    updatedUser(id: $id, username: $username) {
+      username
+      _id
+    }
+  }
+`
