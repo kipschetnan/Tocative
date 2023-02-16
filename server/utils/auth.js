@@ -33,5 +33,18 @@ module.exports = {
     const payload = { username, email, _id };
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
+
+  getProfile: function() {
+    return decode(this.getToken());
+  },
+
+  loggedIn: function() {
+    const token = this.getToken();
+    return !!token && !this.isTokenExpired(token);
+  },
+
+  getToken() {
+    return localStorage.getItem('id_token');
   }
 };
