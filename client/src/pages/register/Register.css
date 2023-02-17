@@ -6,12 +6,12 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    
+    }
 
-}
 .text{
     color:#fcfcfc;
 }
+
 #label{
     color:#fcfcfc;
 }

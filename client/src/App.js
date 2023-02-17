@@ -4,10 +4,10 @@ import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
-import Messages from './pages/messages/messages'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import Messages from './pages/messages/Messages.js';
 import ProfilePage from './pages/profile/Profile';
-import { io } from 'socket.io-client'
+import { io } from 'socket.io-client';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
