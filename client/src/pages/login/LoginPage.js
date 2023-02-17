@@ -51,7 +51,6 @@ const LoginPage = () => {
     });
   }
 
-
   return (
 
     <div className='loginContainer'>
