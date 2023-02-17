@@ -52,7 +52,7 @@ const RegisterPage = () => {
     }
   return (
 
-
+    <div className='loginWrapper'>
     <div className='registerContainer'>
 
         <Formik   validationSchema={registerSchema}>
@@ -94,6 +94,7 @@ const RegisterPage = () => {
         
         </Formik>
 
+    </div>
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 const Chats = () => {
 
   return (
+    <div className='loginWrapper'>
     <div className='chatsContainer'>
         <main className='chats'>
           
@@ -67,6 +68,7 @@ const Chats = () => {
             </div>
           </div>
         </main>
+    </div>
     </div>
   )
 }

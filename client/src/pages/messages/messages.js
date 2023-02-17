@@ -45,6 +45,7 @@ const Messages = ( { currentRoom, socket, username} ) => {
 
 
   return (
+    <div className='loginWrapper'>
     <div className='messagesContainer'>
       <main className='liveChat'>
         <div className='header'>
@@ -73,6 +74,7 @@ const Messages = ( { currentRoom, socket, username} ) => {
 
         
       </main>
+    </div>
     </div>
   )
 }
