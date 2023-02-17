@@ -43,12 +43,13 @@ const typeDefs = gql`
 
   type Mutation {
     login(username: String!, password: String!): Auth
-    createUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth!
+    addUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth!
     addMessage(messageText: String!, conversation: ID!): Message!
     addFriend(friendId: ID!): User!
+    removeFriend(friendId: ID!): User!
     createConversation(participants: [ID!]): Conversation!
-    deleteConversation(_id: ID!): Conversation!
-    updateUser(_id: ID!, username: String!): User!
+    removeConversation(id: ID!): Conversation!
+    updateUser(id: ID!, username: String!): User!
   }
 `
 

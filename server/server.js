@@ -1,13 +1,10 @@
 const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
-const socketio = require('socket.io');
-
+const cors = require('cors')
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
-
-
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
@@ -15,25 +12,12 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-const io = socketio(server)
-
-io.on('connection', socket => {
-  console.log('New client connected');
-
-  socket.on('sendMessage', message => {
-    io.emit('message', message);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
-  });
-})
-
 
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors())
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {
@@ -44,18 +28,61 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+// SocketIO 
+
+const httpServer = require('http').createServer(app)
+
+const io = require('socket.io')(httpServer, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+})
+
+io.on('connection', socket => {
+
+  console.log(`User connected: ${socket.id} `)
+
+
+  socket.on('join_room', (data) => {
+    socket.join(data)
+    console.log(`User: ${socket.id} has joined room: ${data}`)
+  })
+
+  socket.on('send_message', (data) => {
+    socket.to(data.Room).emit('receive_message', data)
+    console.log(data)    
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+
+  socket.on('connect_error', (err) => {e
+    console.log(err.message)
+  })
+
+
+})
+
+
+
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
 
   db.once('open', () => {
-    app.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
+    
   })
 };
+
+
   
 // Call the async function to start the server
 startApolloServer(typeDefs, resolvers);
