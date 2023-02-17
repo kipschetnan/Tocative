@@ -32,3 +32,24 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      firstName
+      lastName
+      username
+      friendCount
+      friends {
+        _id
+        username
+      }
+      messages {
+        _id
+        messageText
+        createdAt
+      }
+    }
+  }
+`;

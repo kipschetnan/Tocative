@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react";
+import './style.css'
 import './Messages.css'
 import SendMessage from '../../components/sendMessage/SendMessage';
 import ReceiveMessage from '../../components/receiveMessage/ReceiveMessage';

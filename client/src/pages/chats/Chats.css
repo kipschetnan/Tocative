@@ -22,10 +22,20 @@
 }
 
 .chats {
+    background-image: url("./images/Untitled_Artwork.jpeg");
+    background-size: cover;
+    repeat: no-repeat;
     width: 100%;
+    height: 100vh;
+    padding: 30px;
+    display: flex;
     flex-direction: column;
     gap: 15px;
     
+}
+
+#label{
+    color:#fcfcfc;
 }
 
 .chatList {
