@@ -36,8 +36,9 @@ const RegisterPage = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        console.log('In Submit!')
+        console.log(formState)
         try {
+            
             const { data } = await addUser({
                 variables: { ...formState },
             });
