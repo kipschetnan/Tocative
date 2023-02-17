@@ -3,51 +3,25 @@ import './Chats.css'
 import Search from '../../components/searchBar/Search'
 import Chat from '../../components/chatBox/Chat'
 import { Link } from 'react-router-dom'
-
 const Chats = () => {
-
   return (
     <div className='loginWrapper'>
     <div className='chatsContainer'>
         <main className='chats'>
-          
           <div className='mainWrapper'>
-
-
-                <h3 id="label">My conversations:</h3>
-                <div className='list'>
-                    <Chat name='Name' />
-                    <Chat name='Name' />
-                    <Chat name='Name' />
-                    <Chat name='Name' />
-                </div>
-
-            <div className='mainContainer'>
-              
-              <Search />
-
-                
-              <div className='chatList'>
-
-                  <h3>My conversations:</h3>
-                  <div className='list'>
-
-                <h3 id="label" className='listTitle'>My conversations:</h3>
-                <div class="searchBar">
-                  <input type="text" placeholder="Search..." class="searchInput"></input>
-                    <button class="searchSubmit"> Submit </button>
-                    </div>
-                <div className='list'>
-
-                    <Chat name='Name' />
-                    <Chat name='Name' />
-                    <Chat name='Name' />
-                    <Chat name='Name' />
-                </div>            
+            <div class="searchBar">
+              <input type="text" placeholder="Search..." class="searchInput"></input>
+                <button class="searchSubmit"> Submit </button>
+            </div>
+            <h3 id="label" className='listTitle'>My conversations:</h3>
+            <div className='list'>
+                <Chat name='Name' />
+                <Chat name='Name' />
+                <Chat name='Name' />
+                <Chat name='Name' />
+            </div>
           </div>
-
           <div className='footer'>
-
             <div className='tab' id='tab1'>
               <div className='linkContainer'>
                 <Link className='link' to='/friends'>
@@ -55,7 +29,6 @@ const Chats = () => {
                 </Link>
               </div>
             </div>
-
             <div className='tab' id='tab2'>
               <div className='linkContainer'>
                 <Link className='link' to='/profile'>
@@ -63,7 +36,6 @@ const Chats = () => {
                 </Link>
               </div>
             </div>
-
             <div className='tab' id='tab3'>
               <div className='linkContainer'>
                 <Link className='link' to='/createRoom'>
@@ -77,5 +49,4 @@ const Chats = () => {
     </div>
   )
 }
-
 export default Chats
