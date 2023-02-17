@@ -6,7 +6,6 @@ import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
 import Messages from './pages/messages/messages'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-import Messages from './pages/messages/Messages'
 import ProfilePage from './pages/profile/Profile';
 import { io } from 'socket.io-client'
 
