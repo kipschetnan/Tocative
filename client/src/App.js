@@ -4,13 +4,31 @@ import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
-import Messages from './pages/messages/messages'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import Messages from './pages/messages/Messages.js';
 import ProfilePage from './pages/profile/Profile';
+import { io } from 'socket.io-client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000/graphql',
+  cache: new InMemoryCache()
+})
 
 function App() {
 
+  const io = require('socket.io-client')
+
+
+  var socket = io('http://localhost:3001', { transports: ['websocket'] });
+  
+  const currentRoom = 'TEST SERVER'
+  
+  const session = socket.emit('join_room', currentRoom)
+
+
   return (
-    <Router>
+    <ApolloProvider client={client}>
+      <Router>
       <div className="App">
         
           <div className='wrapper'>
@@ -51,7 +69,7 @@ function App() {
 
                 <Route path='/messages'>
                   <div>
-                    <Messages />
+                    <Messages socket={socket} currentRoom={currentRoom} />
                   </div>
                 </Route>
 
@@ -72,6 +90,8 @@ function App() {
 
       </div>
     </Router>
+    </ApolloProvider>
+    
   );
 }
 

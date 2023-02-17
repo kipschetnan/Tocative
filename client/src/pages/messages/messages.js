@@ -1,37 +1,80 @@
 import React from 'react'
-import '../messages/messages.css'
+import { useState, useEffect } from "react";
+import './style.css'
+import './Messages.css'
+import SendMessage from '../../components/sendMessage/SendMessage';
+import ReceiveMessage from '../../components/receiveMessage/ReceiveMessage';
+import { Link } from 'react-router-dom'
 
-const messagePage = () => {
+
+const Messages = ( { currentRoom, socket, username} ) => {
+
+  const [messageList, setMessageList] = useState([])
+
+  const [currentMessage, setCurrentMessage] = useState('');
+
+
+  const sendMessage = async (e) => {
+    
+    e.preventDefault()
+
+    if (currentMessage !== "") {
+      const messageData = {
+        Room: currentRoom,
+        Message: currentMessage,
+        Time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
+      }
+
+      await socket.emit('send_message', messageData)
+      setMessageList((list) => [...list, messageData])
+
+
+    }
+  }
+
+  useEffect( () => {
+    socket.on('receive_message', (data) => {
+      console.log(data)
+      setMessageList((list) => [...list, data])
+    })
+
+    return () => socket.removeListener('receive_message')
+    
+  }, [socket])
+  
+
+
   return (
-    <div className='messageContainer'>
-      <main className='chats'>
-        {/* This shows the current friend you are texting, will be displayed at top of screen */}
-        <div className='currentUser'>
+    <div className='messagesContainer'>
+      <main className='liveChat'>
+        <div className='header'>
+          <Link className='exitLink' to='/chats'>
+            <h3>Exit</h3>
+          </Link>
+        </div>
 
-          <div className='avatar'>
-            <img src='' alt='Avatar'></img>
+        <div className='chatBody'>
+          
+          
+          <div className='messagesBody'>
+
+            {messageList.map( (messageContent) => {
+              return  <ReceiveMessage message={messageContent.Message}/>
+            })}
+          
+          
           </div>
-          <div className='username'>
-            <h3> Your Friend's Username </h3>
-          </div>
-
-        </div>
-        {/* This will be the actual chat, will show messages */}
-        <div className='chatMessages'>
-
-                <p  className='recievedMessage'> How are you doing </p>
-                <p  className='sentMessage'> Not too good buddy </p>
-
-
+          
+          <form className='messageForm'>
+            <input className='textBox' placeholder='Send a message...' onChange={(event) => {setCurrentMessage(event.target.value)}}></input>
+            <button onClick={sendMessage}>Send</button>
+          </form>
         </div>
 
-        <div>
-
-        </div>
-
+        
       </main>
     </div>
   )
 }
 
-export default messagePage
+export default Messages

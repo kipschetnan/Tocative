@@ -9,22 +9,37 @@ const Chats = () => {
   return (
     <div className='chatsContainer'>
         <main className='chats'>
-            
-            
-          <Search />
-            
-          <div className='chatList'>
+          
+          <div className='mainWrapper'>
 
-              <h3>My conversations:</h3>
-              <div className='list'>
-                  <Chat name='Name' />
-                  <Chat name='Name' />
-                  <Chat name='Name' />
-                  <Chat name='Name' />
+                <h3 id="label">My conversations:</h3>
+                <div className='list'>
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                </div>
+
+            <div className='mainContainer'>
+              
+              <Search />
+
+                
+              <div className='chatList'>
+
+                  <h3>My conversations:</h3>
+                  <div className='list'>
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                    
+                  </div>
+                  
               </div>
               
+            </div>
+
           </div>
-          
+
           <div className='footer'>
 
             <div className='tab' id='tab1'>
@@ -39,6 +54,14 @@ const Chats = () => {
               <div className='linkContainer'>
                 <Link className='link' to='/profile'>
                   <h3>Profile</h3>
+                </Link>
+              </div>
+            </div>
+
+            <div className='tab' id='tab3'>
+              <div className='linkContainer'>
+                <Link className='link' to='/createRoom'>
+                  <h3>Create Room</h3>
                 </Link>
               </div>
             </div>
