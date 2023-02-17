@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import './messages.css'
+import './messages.js'
 import SendMessage from '../../components/sendMessage/SendMessage';
 import ReceiveMessage from '../../components/receiveMessage/ReceiveMessage';
 import { Link } from 'react-router-dom'
@@ -44,6 +45,7 @@ const Messages = ( { currentRoom, socket, username} ) => {
 
 
   return (
+    <div className='loginWrapper'>
     <div className='messagesContainer'>
       <main className='liveChat'>
         <div className='header'>
@@ -72,6 +74,7 @@ const Messages = ( { currentRoom, socket, username} ) => {
 
         
       </main>
+    </div>
     </div>
   )
 }

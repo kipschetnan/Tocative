@@ -51,25 +51,23 @@ const LoginPage = () => {
     });
   }
 
-
-
   return (
-
-    <div className='loginContainer'>
+    <div className='loginWrapper'>
+      <div className='loginContainer' >
         <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={onSubmit}>
-            <Form className='formContainer'>
+            <Form className='formContainer' >
               <div className='loginSection'>
                 <div className='inputs'>
                   <label id="label">Username: </label>
                   <ErrorMessage name='username' component='span' />
 
-                  <Field className='input'  placeholder='Admin' name='username' onChange={handleChange}/>
+                  <Field className='input'  placeholder='Admin' name='username'/>
                   <label id="label">Password: </label>
 
                   <ErrorMessage name='password' component='span' />
-                  <Field className='input' type='password' placeholder='***********' name='password' onChange={handleChange}/>
+                  <Field className='input' type='password' placeholder='***********' name='password'/>
                 </div>
-                <button className='loginButton'>Log in </button>
+                <button className='loginButton' type='submit'>Log in </button>
 
                 <a className='resetLink' href='#'> Forgot password? </a>
                 <div className='line'></div>
@@ -84,6 +82,8 @@ const LoginPage = () => {
             </Form>
           </Formik>
     </div>
+    </div>
+    
   )
 }
 

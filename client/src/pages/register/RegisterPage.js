@@ -21,6 +21,8 @@ const RegisterPage = () => {
         firstname: '',
         username: '',
         password: '',
+        firstName: '',
+        lastName: '',
       });
 
     const [addUser, { error }] = useMutation(ADD_USER);
@@ -36,25 +38,28 @@ const RegisterPage = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-
+        console.log(formState)
         try {
+            
             const { data } = await addUser({
                 variables: { ...formState },
             });
+            console.log(data)
 
             Auth.login(data.addUser.token);
+            console.log('Registered!')
         } catch (e) {
-            
+            console.error(e);
         }
     }
   return (
 
-
+    <div className='loginWrapper'>
     <div className='registerContainer'>
 
-        <Formik onSubmit={onSubmit}  validationSchema={registerSchema}>
+        <Formik   validationSchema={registerSchema}>
             
-            <Form className='registerForm' >
+            <Form className='registerForm' onSubmit={onSubmit}>
 
                 <div className='registerTitle'>
                     <div className='text'>
@@ -65,12 +70,20 @@ const RegisterPage = () => {
                 </div>
 
                 <div className='line'></div>
+
+                <label id="label">First Name: </label>
+                <ErrorMessage name='firstName' component='span'/>
+                <Field className='input' id='firstName'  name='firstName' placeholder='First Name' value={formState.firstName} onChange={handleChange}/>
+
+                <label id="label">Last Name: </label>
+                <ErrorMessage name='lastName' component='span'/>
+                <Field className='input' id='lastName'  name='lastName' placeholder='Last Name' value={formState.lastName} onChange={handleChange}/>
+
                 <label id="label">Username: </label>
                 <ErrorMessage name='username' component='span'/>
-
                 <Field className='input' id='username'  name='username' placeholder='Admin' value={formState.username} onChange={handleChange}/>
-                <label id="label">Password: </label>
 
+                <label id="label">Password: </label>
                 <ErrorMessage name='password' component='span'/>
                 <Field className='input' id='password' type='password' name='password' placeholder='*********' value={formState.password} onChange={handleChange}/>
 
@@ -82,6 +95,7 @@ const RegisterPage = () => {
         
         </Formik>
 
+    </div>
     </div>
   )
 }
