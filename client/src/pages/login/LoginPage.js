@@ -33,11 +33,12 @@ const LoginPage = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(formState)
     try {
       const { data } = await login({
         variables: { ...formState },
       });
+      console.log(data)
 
       Auth.login(data.login.token);
     } catch (e) {
@@ -54,18 +55,18 @@ const LoginPage = () => {
   return (
     <div className='loginWrapper'>
       <div className='loginContainer' >
-        <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={onSubmit}>
-            <Form className='formContainer' >
+        <Formik initialValues={initialValues} validationSchema={loginSchema}>
+            <Form className='formContainer' onSubmit={onSubmit}>
               <div className='loginSection'>
                 <div className='inputs'>
                   <label id="label">Username: </label>
                   <ErrorMessage name='username' component='span' />
 
-                  <Field className='input'  placeholder='Admin' name='username'/>
+                  <Field className='input'  placeholder='Admin' name='username' value={formState.username} onChange={handleChange}/>
                   <label id="label">Password: </label>
 
                   <ErrorMessage name='password' component='span' />
-                  <Field className='input' type='password' placeholder='***********' name='password'/>
+                  <Field className='input' type='password' placeholder='***********' name='password' value={formState.password} onChange={handleChange}/>
                 </div>
                 <button className='loginButton' type='submit'>Log in </button>
 

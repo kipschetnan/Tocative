@@ -49,57 +49,19 @@ function App() {
           <div className='wrapper'>
             <div className='container'>
 
-
-              {/* <Switch> */}
               <Routes>
 
                 <Route path='/login' element={<LoginPage />}/>
-                  {/* <div className='loginWrapper'> */}
 
+                <Route path='/register' element={<RegisterPage />}/>
 
+                <Route path='/chats' element={<Chats/>}/>
 
-                {/* <Route exact path='/login'>
-                  <div className='loginWrapper'>
-                    <LoginPage />
-                  </div>
-                </Route> */}
+                <Route path='/messages' element={<Messages/>}/>
 
-                <Route 
-                  path='/register'
-                  element={<RegisterPage />}/>
-                {/* <Route path='/register'>
-                  <div className='loginWrapper'>
-                    <RegisterPage />
-                  </div>
-                </Route>
-
-
-                <Route path='/chats'>
-                  
-                  <div className='loginWrapper'>
-                    <Chats />
-                  </div>
-
-                </Route>
-
-
-                <Route path='/messages'>
-                  <div>
-                    <Messages />
-                  </div>
-                </Route>
-
-
-                <Route path ='/profile'>
-                  <div className='loginWrapper'>
-                    <ProfilePage />
-                  </div>
-                </Route> */}
+                <Route path ='/profile' element={<ProfilePage/>}/>
 
               </Routes>
-              {/* </Switch> */}
-
-
 
             </div>
           </div>
