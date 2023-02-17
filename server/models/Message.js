@@ -19,7 +19,7 @@ const messageSchema = new Schema(
         },
         conversation: {
             type: mongoose.Schema.Types.ObjectId,
-            required: true,
+            required: false,
             ref: 'Conversation'
         }
     },

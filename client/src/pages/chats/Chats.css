@@ -1,3 +1,18 @@
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
 .chatsContainer {
     height: 100vh;
     width: 100%;
@@ -27,7 +42,6 @@
     repeat: no-repeat;
     width: 100%;
     height: 100vh;
-    padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -52,9 +66,11 @@
     flex-direction: column;
     gap: 15px;
     overflow: scroll;
-    height: 60vh;
-    width: 100%;
-    padding: 0px 15px;
+    width: 50%;
+    padding: 15px;
+    margin: 10%;
+    background-color: #FFFFFF;
+    margin-top: 0px;
 }
 
 .footer {
@@ -112,11 +128,44 @@
     text-decoration: none;
 }
 
+.searchBar {
+  width: 50%;
+  margin: 10px;
+}
+
+.searchInput {
+  width: 90%;
+    height: 35px;
+    background-color: #F9FAFD;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    box-shadow: 1.8px 1.8px 2.2px rgb(0 0 0 / 5%), 4.3px 4.4px 5.3px rgb(0 0 0 / 7%), 8px 8.3px 10px rgb(0 0 0 / 7%), 14.3px 14.7px 17.9px rgb(0 0 0 / 8%), 26.7px 27.6px 33.4px rgb(0 0 0 / 7%), 64px 66px 80px rgb(0 0 0 / 7%);
+}
+
+.searchSubmit {
+  height: 35px;
+  width: 10%;
+  background-color: #F9FAFD;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 1.8px 1.8px 2.2px rgb(0 0 0 / 5%), 4.3px 4.4px 5.3px rgb(0 0 0 / 7%), 8px 8.3px 10px rgb(0 0 0 / 7%), 14.3px 14.7px 17.9px rgb(0 0 0 / 8%), 26.7px 27.6px 33.4px rgb(0 0 0 / 7%), 64px 66px 80px rgb(0 0 0 / 7%);
+}
+
 #tab3 {
     width: 100%;
     align-items: center;
     text-align: center;
     padding: 0px 10px 0px 0px;
+}
+
+.listTitle {
+  margin-top:10%;
 }
 
 @media screen and (min-width: 600px) {
