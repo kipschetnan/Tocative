@@ -49,7 +49,9 @@ const ProfilePage = () => {
 
     return (
         <div className='profileContainer'>
+
             <main className='userInfo'>
+
                 <div className='friendList'>
                     <h1>Friends</h1>
                     <FriendList 

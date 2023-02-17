@@ -12,9 +12,18 @@ const Chats = () => {
           
           <div className='mainWrapper'>
 
+                <h3 id="label">My conversations:</h3>
+                <div className='list'>
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                </div>
+
             <div className='mainContainer'>
               
               <Search />
+
                 
               <div className='chatList'>
 
