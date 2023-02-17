@@ -12,11 +12,13 @@ import Auth from '../../utils/auth';
 const RegisterPage = () => {
 
     const registerSchema = Yup.object().shape({
+        firstname: Yup.string().required('Name cannot be blank.'),
         username: Yup.string().required('Username cannot be blank.'),
         password: Yup.string().required('Password cannot be blank.')
     })
 
     const [formState, setFormState] = useState({
+        firstname: '',
         username: '',
         password: '',
         firstName: '',
@@ -85,7 +87,6 @@ const RegisterPage = () => {
                 <ErrorMessage name='password' component='span'/>
                 <Field className='input' id='password' type='password' name='password' placeholder='*********' value={formState.password} onChange={handleChange}/>
 
-               
                 <div className='signupButton'>
                     <button className='registerButton' type='submit'>Submit</button>
                 </div>

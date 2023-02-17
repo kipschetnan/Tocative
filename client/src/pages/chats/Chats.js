@@ -13,6 +13,7 @@ const Chats = () => {
           
           <div className='mainWrapper'>
 
+
                 <h3 id="label">My conversations:</h3>
                 <div className='list'>
                     <Chat name='Name' />
@@ -30,15 +31,19 @@ const Chats = () => {
 
                   <h3>My conversations:</h3>
                   <div className='list'>
-                    <Chat name='Name' />
-                    <Chat name='Name' />
-                    
-                  </div>
-                  
-              </div>
-              
-            </div>
 
+                <h3 id="label" className='listTitle'>My conversations:</h3>
+                <div class="searchBar">
+                  <input type="text" placeholder="Search..." class="searchInput"></input>
+                    <button class="searchSubmit"> Submit </button>
+                    </div>
+                <div className='list'>
+
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                    <Chat name='Name' />
+                </div>            
           </div>
 
           <div className='footer'>
