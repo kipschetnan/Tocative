@@ -1,57 +1,73 @@
-import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
 import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
-import Messages from './pages/messages/Messages'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import Messages from './pages/messages/messages'
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
 import ProfilePage from './pages/profile/Profile';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
+
+// const httpLink = createHttpLink({
+//   uri: '/graphql',
+// });
+
+// const authLink = setContext((_, { headers }) => {
+//   const token = localStorage.getItem('id_token');
+
+//   return {
+//     headers: {
+//       ...headers,
+//       authorization: token ? `Bearer ${token}` : '',
+//     },
+//   };
+// });
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
+  uri: 'http://localhost:3001/graphql',
   cache: new InMemoryCache()
 })
 
 function App() {
 
-  const io = require('socket.io-client')
+  // const io = require('socket.io-client')
 
 
-  var socket = io('http://localhost:3001', { transports: ['websocket'] });
-  
-  const currentRoom = 'TEST SERVER'
-  
-  const session = socket.emit('join_room', currentRoom)
+  // var socket = io('http://localhost:3001', { transports: ['websocket'] });
+
+  // const currentRoom = 'TEST SERVER'
+
+  // const session = socket.emit('join_room', currentRoom)
 
 
   return (
     <ApolloProvider client={client}>
       <Router>
-      <div className="App">
-        
+        <div className="App">
+
           <div className='wrapper'>
             <div className='container'>
-              
 
-              <Switch>
 
-                <Route exact path='/'>
+              {/* <Switch> */}
+              <Routes>
+
+                <Route path='/login' element={<LoginPage />}/>
+                  {/* <div className='loginWrapper'> */}
+
+
+
+                {/* <Route exact path='/login'>
                   <div className='loginWrapper'>
                     <LoginPage />
                   </div>
-                </Route>
+                </Route> */}
 
-
-                <Route exact path='/login'>
-                  <div className='loginWrapper'>
-                    <LoginPage />
-                  </div>
-                </Route>
-
-
-                <Route path='/register'>
+                <Route 
+                  path='/register'
+                  element={<RegisterPage />}/>
+                {/* <Route path='/register'>
                   <div className='loginWrapper'>
                     <RegisterPage />
                   </div>
@@ -69,7 +85,7 @@ function App() {
 
                 <Route path='/messages'>
                   <div>
-                    <Messages socket={socket} currentRoom={currentRoom} />
+                    <Messages />
                   </div>
                 </Route>
 
@@ -78,20 +94,20 @@ function App() {
                   <div className='loginWrapper'>
                     <ProfilePage />
                   </div>
-                </Route>
+                </Route> */}
+
+              </Routes>
+              {/* </Switch> */}
 
 
-              </Switch>
 
-              
-              
             </div>
           </div>
 
-      </div>
-    </Router>
-    </ApolloProvider>
-    
+        </div>
+      </Router>
+    // </ApolloProvider>
+
   );
 }
 
