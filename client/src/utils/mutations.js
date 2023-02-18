@@ -38,8 +38,8 @@ export const ADD_MESSAGE = gql`
 `;
 
 export const ADD_FRIEND = gql`
-  mutation addFriend($id: ID!) {
-    addFriend(friendId: $id) {
+  mutation addFriend($username: String!) {
+    addFriend(username: $username) {
       _id
       username
       friendCount

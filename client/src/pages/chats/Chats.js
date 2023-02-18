@@ -1,17 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Chats.css'
 import Search from '../../components/searchBar/Search'
 import Chat from '../../components/chatBox/Chat'
 import { Link } from 'react-router-dom'
+import {ADD_FRIEND} from '../../utils/mutations'
+import { useMutation } from '@apollo/client';
+import Auth from '../../utils/auth'
 const Chats = () => {
+
+  const [formState, setFormState] = useState({ username: ''})
+  const [addFriend, { error }] = useMutation(ADD_FRIEND)
+  
+  const handleChange = (event) => {
+
+    setFormState({
+      username: event.target.value
+    });
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault()
+    console.log(formState)
+
+    try {
+      const { data } = await addFriend({
+        variables: { ...formState }
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
   return (
     <div className='loginWrapper'>
     <div className='chatsContainer'>
         <main className='chats'>
           <div className='mainWrapper'>
-            <div class="searchBar">
-              <input type="text" placeholder="Search..." class="searchInput"></input>
-                <button class="searchSubmit"> Submit </button>
+            <div className="searchBar" >
+              <input type="text" placeholder="Search For a Friend..." className="searchInput" value={formState.username} onChange={handleChange}></input>
+                <button className="searchSubmit" onClick={onSubmit} > Submit </button>
             </div>
             <h3 id="label" className='listTitle'>My conversations:</h3>
             <div className='list'>

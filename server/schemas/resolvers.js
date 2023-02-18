@@ -90,18 +90,19 @@ const resolvers = {
       removeConversation: async (_, { id }) => {
         return Conversation.findByIdAndRemove(id)
       },
-      addFriend: async (parent, { friendId }, context) => {
-        if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { friends: friendId } },
-            { new: true }
-          ).populate('friends');
-
-          return updatedUser;
+      addFriend: async (parent, { username }, context) => {
+        if (!context.user) {
+          throw new AuthenticationError('You need to be logged in!');
         }
 
-        throw new AuthenticationError('You need to be logged in!');
+        const currentUser = await User.findById(context.user._id)
+        const friend = await User.findOne({username})
+        console.log(friend)
+        console.log(context.user._id)
+        const updatedUser = currentUser.friends.push(friend)
+        await currentUser.save()
+        return currentUser
+        
       },
       removeFriend: async (_, { friendId }, context) => {
         try {
