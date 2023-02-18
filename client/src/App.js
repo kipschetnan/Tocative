@@ -7,6 +7,7 @@ import Chats from './pages/chats/Chats';
 import Messages from './pages/messages/messages'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
 import ProfilePage from './pages/profile/Profile';
+import createRoom from './pages/createRoom/index';
 // import { io } from 'socket.io-client';
 
 // const httpLink = createHttpLink({
@@ -60,6 +61,8 @@ function App() {
                 <Route path='/messages' element={<Messages/>}/>
 
                 <Route path ='/profile' element={<ProfilePage/>}/>
+
+                <Route path='/createRoom' element={<createRoom/>}/>
 
               </Routes>
 
