@@ -65,9 +65,14 @@ export const REMOVE_FRIEND = gql`
 `;
 
 export const CREATE_CONVERSATION = gql`
-  mutation createConversation($participants: participants!) {
-    createConversation(participants: $participants){
+  mutation createConversation($participants: [ID!]) {
+    createConversation(participants: $participants) {
       _id
+      messages {
+        createdAt
+        messageText
+        sender
+      }
       participants {
         _id
         username

@@ -14,33 +14,33 @@ const Messages = ( { currentRoom, socket, username} ) => {
   const [currentMessage, setCurrentMessage] = useState('');
 
 
-  const sendMessage = async (e) => {
+  // const sendMessage = async (e) => {
     
-    e.preventDefault()
+  //   e.preventDefault()
 
-    if (currentMessage !== "") {
-      const messageData = {
-        Room: currentRoom,
-        Message: currentMessage,
-        Time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
-      }
+  //   if (currentMessage !== "") {
+  //     const messageData = {
+  //       Room: currentRoom,
+  //       Message: currentMessage,
+  //       Time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
+  //     }
 
-      await socket.emit('send_message', messageData)
-      setMessageList((list) => [...list, messageData])
+  //     await socket.emit('send_message', messageData)
+  //     setMessageList((list) => [...list, messageData])
 
 
-    }
-  }
+  //   }
+  // }
 
-  useEffect( () => {
-    socket.on('receive_message', (data) => {
-      console.log(data)
-      setMessageList((list) => [...list, data])
-    })
+  // useEffect( () => {
+  //   socket.on('receive_message', (data) => {
+  //     console.log(data)
+  //     setMessageList((list) => [...list, data])
+  //   })
 
-    return () => socket.removeListener('receive_message')
+  //   return () => socket.removeListener('receive_message')
     
-  }, [socket])
+  // }, [socket])
   
 
 
@@ -59,16 +59,16 @@ const Messages = ( { currentRoom, socket, username} ) => {
           
           <div className='messagesBody'>
 
-            {messageList.map( (messageContent) => {
+            {/* {messageList.map( (messageContent) => {
               return  <ReceiveMessage message={messageContent.Message}/>
-            })}
+            })} */}
           
           
           </div>
           
           <form className='messageForm'>
-            <input className='textBox' placeholder='Send a message...' onChange={(event) => {setCurrentMessage(event.target.value)}}></input>
-            <button onClick={sendMessage}>Send</button>
+            <input className='textBox' placeholder='Send a message...' ></input>
+            <button>Send</button>
           </form>
         </div>
 
