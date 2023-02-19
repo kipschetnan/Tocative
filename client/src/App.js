@@ -53,17 +53,17 @@ function App() {
 
               <Routes>
 
-                <Route path='/login' element={<LoginPage />}/>
+                <Route path='/login' element={<LoginPage />} />
 
-                <Route path='/register' element={<RegisterPage />}/>
+                <Route path='/register' element={<RegisterPage />} />
 
-                <Route path='/' element={<Chats/>}/>
+                <Route path='/' element={<Chats />} />
 
-                <Route path='/messages' element={<Messages/>}/>
+                <Route path='/messages/:convoId' element={<Messages/>}/>
 
-                <Route path ='/profile' element={<ProfilePage/>}/>
+                <Route path='/profile' element={<ProfilePage />} />
 
-                <Route path='/createRoom' element={<CreateRoom/>}/>
+                <Route path='/createRoom' element={<CreateRoom />} />
 
               </Routes>
 

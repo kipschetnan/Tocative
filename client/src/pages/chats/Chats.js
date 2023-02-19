@@ -21,7 +21,7 @@ const Chats = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
     console.log(formState)
-
+    
     try {
       const { data } = await addFriend({
         variables: { ...formState }
@@ -29,7 +29,9 @@ const Chats = () => {
     } catch (e) {
       console.error(e)
     }
+    window.location.reload()
   }
+
   return (
     <div className='loginWrapper'>
     <div className='chatsContainer'>

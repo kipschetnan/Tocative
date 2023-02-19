@@ -27,12 +27,16 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_MESSAGE = gql`
-  mutation addMessage($messageText: String!) {
-    addMessage(messageText: $messageText) {
+  mutation addMessage($messageText: String!, $conversation: ID!) {
+    addMessage(messageText: $messageText, conversation: $conversation) {
+      conversation {
+        messages {
+          messageText
+          createdAt
+        }
+      }
       _id
       messageText
-      createdAt
-      username
     }
   }
 `;

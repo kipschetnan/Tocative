@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { useQuery } from '@apollo/client'
-import { useMutation } from '@apollo/client'
+import { useQuery ,useMutation} from '@apollo/client'
 import { CREATE_CONVERSATION } from '../../utils/mutations'
 import { QUERY_ME, QUERY_USER } from '../../utils/queries'
 import { Link, useParams, useNavigate } from 'react-router-dom'
@@ -68,10 +67,12 @@ const createRoom = () => {
             const { data } = await createConversation({
                 variables: { ...formState },
             });
+            const convo = data.createConversation
+            navigate(`/messages/${convo._id}`)
         } catch (e) {
             console.error(e);
         }
-        navigate('/messaging')
+        
     }
 
     return (
