@@ -84,8 +84,19 @@ const resolvers = {
       updateUser: async (_, { id, ...rest }) => {
         return User.findByIdAndUpdate(id, rest, {new: true })
       },
-      createConversation: async (_, args) => {
-        return Conversation.create(args)
+      createConversation: async (_, args, context) => {
+        if (!context.user) {
+          throw new AuthenticationError('You need to be logged in!');
+        }
+        console.log(args)
+        const currentUserId = context.user._id
+        console.log(currentUserId)
+        const participants = args.participants.concat(currentUserId)
+        console.log(participants)
+        
+        return Conversation.create({
+          participants: participants
+        })
       },
       removeConversation: async (_, { id }) => {
         return Conversation.findByIdAndRemove(id)
