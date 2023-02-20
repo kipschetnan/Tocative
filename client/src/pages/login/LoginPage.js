@@ -47,7 +47,7 @@ const LoginPage = () => {
 
     // clear form values
     setFormState({
-      email: '',
+      username: '',
       password: '',
     });
   }

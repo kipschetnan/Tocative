@@ -39,13 +39,14 @@ const typeDefs = gql`
     message(_id: ID!): Message
     conversations: [Conversation]
     conversation(_id: ID): Conversation
+    userConversations: [Conversation]
   }
 
   type Mutation {
     login(username: String!, password: String!): Auth
     addUser(username: String!, password: String!, firstName: String!, lastName: String!): Auth
     addMessage(messageText: String!, conversation: ID!): Message!
-    addFriend(friendId: ID!): User!
+    addFriend(username: String!): User!
     removeFriend(friendId: ID!): User!
     createConversation(participants: [ID!]): Conversation!
     removeConversation(id: ID!): Conversation!

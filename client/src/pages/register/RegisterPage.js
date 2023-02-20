@@ -18,7 +18,6 @@ const RegisterPage = () => {
     })
 
     const [formState, setFormState] = useState({
-        firstname: '',
         username: '',
         password: '',
         firstName: '',

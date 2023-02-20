@@ -53,3 +53,40 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_CONVERSATION = gql`
+  query conversation($id: ID!) {
+  conversation(_id: $id) {
+    _id
+    participants {
+      username
+    }
+    messages {
+      messageText
+      sender
+      createdAt
+    }
+  }
+}
+`
+
+export const QUERY_CONVERSATIONS = gql`
+  query conversations {
+  conversations {
+    _id
+    participants {
+      username
+    }
+  }
+}
+`
+
+export const QUERY_USER_CONVERSATIONS = gql`
+  query userConversations {
+  userConversations {
+    participants {
+      username
+    }
+  }
+}
+`

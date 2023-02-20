@@ -27,19 +27,23 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_MESSAGE = gql`
-  mutation addMessage($messageText: String!) {
-    addMessage(messageText: $messageText) {
+  mutation addMessage($messageText: String!, $conversation: ID!) {
+    addMessage(messageText: $messageText, conversation: $conversation) {
+      conversation {
+        messages {
+          messageText
+          createdAt
+        }
+      }
       _id
       messageText
-      createdAt
-      username
     }
   }
 `;
 
 export const ADD_FRIEND = gql`
-  mutation addFriend($id: ID!) {
-    addFriend(friendId: $id) {
+  mutation addFriend($username: String!) {
+    addFriend(username: $username) {
       _id
       username
       friendCount
@@ -65,9 +69,14 @@ export const REMOVE_FRIEND = gql`
 `;
 
 export const CREATE_CONVERSATION = gql`
-  mutation createConversation($participants: participants!) {
-    createConversation(participants: $participants){
+  mutation createConversation($participants: [ID!]) {
+    createConversation(participants: $participants) {
       _id
+      messages {
+        createdAt
+        messageText
+        sender
+      }
       participants {
         _id
         username

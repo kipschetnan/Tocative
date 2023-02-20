@@ -6,29 +6,30 @@ import HomePage from './pages/home/HomePage';
 import Chats from './pages/chats/Chats';
 import Messages from './pages/messages/messages'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context';
 import ProfilePage from './pages/profile/Profile';
-import createRoom from './pages/createRoom/index';
+import CreateRoom from './pages/createRoom/index';
 // import { io } from 'socket.io-client';
 
-// const httpLink = createHttpLink({
-//   uri: '/graphql',
-// });
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
 
-// const authLink = setContext((_, { headers }) => {
-//   const token = localStorage.getItem('id_token');
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
 
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : '',
-//     },
-//   };
-// });
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
-  cache: new InMemoryCache()
-})
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
 
@@ -52,17 +53,17 @@ function App() {
 
               <Routes>
 
-                <Route path='/login' element={<LoginPage />}/>
+                <Route path='/login' element={<LoginPage />} />
 
-                <Route path='/register' element={<RegisterPage />}/>
+                <Route path='/register' element={<RegisterPage />} />
 
-                <Route path='/chats' element={<Chats/>}/>
+                <Route path='/' element={<Chats />} />
 
-                <Route path='/messages' element={<Messages/>}/>
+                <Route path='/messages/:convoId' element={<Messages/>}/>
 
-                <Route path ='/profile' element={<ProfilePage/>}/>
+                <Route path='/profile' element={<ProfilePage />} />
 
-                <Route path='/createRoom' element={<createRoom/>}/>
+                <Route path='/createRoom' element={<CreateRoom />} />
 
               </Routes>
 
