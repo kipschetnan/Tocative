@@ -4,13 +4,20 @@ import Search from '../../components/searchBar/Search'
 import Chat from '../../components/chatBox/Chat'
 import { Link } from 'react-router-dom'
 import {ADD_FRIEND} from '../../utils/mutations'
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../../utils/auth'
+import { QUERY_USER_CONVERSATIONS } from '../../utils/queries'
+
 const Chats = () => {
 
   const [formState, setFormState] = useState({ username: ''})
   const [addFriend, { error }] = useMutation(ADD_FRIEND)
-  
+  const { loading: userConvoLoading, error: userConvoError, data: userConvoData } = useQuery(QUERY_USER_CONVERSATIONS);
+
+  if (userConvoLoading) return <p>Loading logged in user...</p>;
+  if (userConvoError) return <p>Error loading logged in user: {userConvoError.message}</p>;
+
+  console.log(userConvoData)
   const handleChange = (event) => {
 
     setFormState({
@@ -43,10 +50,14 @@ const Chats = () => {
             </div>
             <h3 id="label" className='listTitle'>My conversations:</h3>
             <div className='list'>
-                <Chat name='Name' />
-                <Chat name='Name' />
-                <Chat name='Name' />
-                <Chat name='Name' />
+
+              {userConvoData.userConversations.map((convo) => {
+                return <Chat name='hi'/>
+              })}
+                {/* // <Chat name='Name' />
+                // <Chat name='Name' />
+                // <Chat name='Name' />
+                // <Chat name='Name' /> */}
             </div>
           </div>
           <div className='footer'>

@@ -38,6 +38,12 @@ const resolvers = {
     conversation: async (parent, { _id }) => {
       console.log("HERE IN the conversation resolver")
       return Conversation.findById(_id).populate('messages').populate('participants')
+    },
+    userConversations: async (_,args,context) => {
+      const conversation = await Conversation.find({
+        participants: { $in: context.user._id}
+      }).populate('participants')
+      return conversation
     }
   },
   Mutation: {
