@@ -33,11 +33,11 @@ const resolvers = {
       return Message.find()
     },
     conversations: async () => {
-      return Conversation.find().populate('messages').populate('participants')
+      return (await Conversation.find().populate('messages').populate('participants').populate('name'))
     },
     conversation: async (parent, { _id }) => {
       console.log("HERE IN the conversation resolver")
-      return Conversation.findById(_id).populate('messages').populate('participants')
+      return Conversation.findById(_id).populate('messages').populate('participants').populate('name')
     },
     userConversations: async (_,args,context) => {
       const conversation = await Conversation.find({
@@ -107,6 +107,7 @@ const resolvers = {
       console.log(participants)
 
       return Conversation.create({
+        name: args.name,
         participants: participants
       })
     },
