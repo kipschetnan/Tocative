@@ -7,6 +7,7 @@ import {ADD_FRIEND} from '../../utils/mutations'
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../../utils/auth'
 import { QUERY_USER_CONVERSATIONS } from '../../utils/queries'
+import Footer from '../../components/footer/Footer'
 
 const Chats = () => {
 
@@ -17,10 +18,12 @@ const Chats = () => {
   if (userConvoLoading) return <p>Loading logged in user...</p>;
   if (userConvoError) return <p>Error loading logged in user: {userConvoError.message}</p>;
 
+
   // console.log(userConvoData.userConversations)
   const initialConvos = userConvoData.userConversations
   const convos = [...initialConvos].reverse()
   console.log(convos)
+
   const handleChange = (event) => {
 
     setFormState({
@@ -49,8 +52,9 @@ const Chats = () => {
           <div className='mainWrapper'>
             <div className="searchBar" >
               <input type="text" placeholder="Search For a Friend..." className="searchInput" value={formState.username} onChange={handleChange}></input>
-                <button className="searchSubmit" onClick={onSubmit} > Submit </button>
+              <button className="searchSubmit" onClick={onSubmit} > Submit </button>
             </div>
+
             <h3 id="label" className='listTitle'>My conversations:</h3>
             <div className='list'>
               
@@ -59,31 +63,20 @@ const Chats = () => {
                 return <Chat name={convo.name} id={convo._id}/>
               })}
 
+            <div className='convosWrapper'>
+
+              <h3 id="label" className='listTitle'>My conversations:</h3>
+              <div className='list'>
+
+                {userConvoData.userConversations.map((convo) => {
+                  return <Chat  />
+                })}
+
+              </div>
             </div>
+            
           </div>
-          <div className='footer'>
-            <div className='tab' id='tab1'>
-              <div className='linkContainer'>
-                <Link className='link' to='/friends'>
-                  <h3>Friends</h3>
-                </Link>
-              </div>
-            </div>
-            <div className='tab' id='tab2'>
-              <div className='linkContainer'>
-                <Link className='link' to='/profile'>
-                  <h3>Profile</h3>
-                </Link>
-              </div>
-            </div>
-            <div className='tab' id='tab3'>
-              <div className='linkContainer'>
-                <Link className='link' to='/createRoom'>
-                  <h3>Create Room</h3>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Footer />
         </main>
     </div>
     </div>

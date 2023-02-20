@@ -4,6 +4,9 @@ import { CREATE_CONVERSATION } from '../../utils/mutations'
 import { QUERY_ME, QUERY_USER } from '../../utils/queries'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import Auth from '../../utils/auth'
+import './index.css'
+import Footer from '../../components/footer/Footer'
+
 
 const createRoom = () => {
     const navigate = useNavigate();
@@ -62,21 +65,37 @@ const createRoom = () => {
     }
 
     return (
-        <div>
-            <form>
-                <input type='text' placeholder='Enter Your Chat Name' value={formState.name} onChange={handleChange2}></input>
-                <input type='text' placeholder='Enter a username' value={username} onChange={handleChange}></input>
-                <button onClick={onCreateConversation}>
-                    Create Conversation
-                </button>
-            </form>
+        <div className='loginWrapper'>
 
-            <h1>Friends List</h1>
-                {userData.me.friends.map(item => (
-                    <ul key={item._id}>
-                        <div>{item.username}</div>
-                    </ul>
-                ))}
+            <div className='createRoomWrapper'>
+
+                <div className='formWrapper'>
+                
+                    <form onSubmit={onSubmit}>
+                        <div className='section1'>
+                            <input className='searchInput' type='text' placeholder='Enter Your Chat Name' value={formState.name} onChange={handleChange2}></input>
+                            <input className='searchInput' type='text' placeholder='Enter a username' value={username} onChange={handleChange}></input>
+                            <button className='searchButton2' type='submit'>
+                                Create Conversation
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div className='friendList'>
+                        <h2>Friends List: </h2>
+                            {userData.me.friends.map(item => (
+                                <ul key={item._id}>
+                                    <div>{item.username}</div>
+                                </ul>
+                            ))}
+                    </div>
+                    
+                </div>
+                <Footer />
+                
+
+            </div>
+            
         </div>
     )
 }
