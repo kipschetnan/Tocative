@@ -54,10 +54,7 @@ const Chats = () => {
               {userConvoData.userConversations.map((convo) => {
                 return <Chat name='hi'/>
               })}
-                {/* // <Chat name='Name' />
-                // <Chat name='Name' />
-                // <Chat name='Name' />
-                // <Chat name='Name' /> */}
+
             </div>
           </div>
           <div className='footer'>
