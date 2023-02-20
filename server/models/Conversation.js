@@ -1,6 +1,10 @@
 const { Schema, model, mongoose } = require('mongoose');
 
 const conversationSchema = new Schema({
+    name: {
+      type: String,
+      minlength: 1
+    },
     participants: [
       {
           type: mongoose.Schema.Types.ObjectId,
