@@ -84,6 +84,7 @@ export const QUERY_CONVERSATIONS = gql`
 export const QUERY_USER_CONVERSATIONS = gql`
   query userConversations {
   userConversations {
+    _id
     participants {
       username
     }
