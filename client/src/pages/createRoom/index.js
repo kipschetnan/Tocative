@@ -11,13 +11,16 @@ import Footer from '../../components/footer/Footer'
 const createRoom = () => {
     const navigate = useNavigate();
     const [formState, setFormState] = useState({
+        name: '',
         participants: []
     });
+
     const [username, setUsername] = useState('')
     const {  } = useQuery(QUERY_USER, {
         variables: {username},
         onCompleted: (data) => {
             setFormState({
+                name: formState.name,
                 participants: [data.user._id]
             })
         }
@@ -29,41 +32,24 @@ const createRoom = () => {
 
     if (userLoading) return <p>Loading logged in user...</p>;
     if (userError) return <p>Error loading logged in user: {userError.message}</p>;
-    // setFormState([searchedUser._id])
-
-    // const { username: userParam } = useParams();
-
- 
-
-    // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    //     variables: { username: userParam },
-    // });
-
-    // const user = data?.me || data?.user || {};
-
-    // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    //     return <Link to="/profile" />;
-    //   }
-    
-    //   if (loading) {
-    //     return <div>Loading...</div>;
-    //   }
-    
-    //   if (!user?.username) {
-    //     return (
-    //       <h4>
-    //         You need to be logged in to see this. Use the navigation links above to
-    //         sign up or log in!
-    //       </h4>
-    //     );
-    //   }
 
     const handleChange = (event) => {
+        console.log('handle change', event.target)
         setUsername(event.target.value)
     }
+    const handleChange2 = (event) => {
+        console.log("Handlechange2", event.target.value)
+        const newFormState = { 
+            name: event.target.value,
+            participants: formState.participants
+        }
+        //newFormState.name = event.target.value
+        setFormState(newFormState)
+    }
 
-    const onSubmit = async (event) => {
-        console.log(username)
+    const onCreateConversation = async (event) => {
+        console.log('username is', username)
+        console.log('formstate is', formState)
         event.preventDefault();
         console.log(formState)
         try {
@@ -87,6 +73,7 @@ const createRoom = () => {
                 
                     <form onSubmit={onSubmit}>
                         <div className='section1'>
+                            <input className='searchInput' type='text' placeholder='Enter Your Chat Name' value={formState.name} onChange={handleChange2}></input>
                             <input className='searchInput' type='text' placeholder='Enter a username' value={username} onChange={handleChange}></input>
                             <button className='searchButton2' type='submit'>
                                 Create Conversation
@@ -109,7 +96,6 @@ const createRoom = () => {
 
             </div>
             
-
         </div>
     )
 }

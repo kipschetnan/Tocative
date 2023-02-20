@@ -18,10 +18,12 @@ const Chats = () => {
   if (userConvoLoading) return <p>Loading logged in user...</p>;
   if (userConvoError) return <p>Error loading logged in user: {userConvoError.message}</p>;
 
-  console.log(userConvoData)
 
-  
-  
+  // console.log(userConvoData.userConversations)
+  const initialConvos = userConvoData.userConversations
+  const convos = [...initialConvos].reverse()
+  console.log(convos)
+
   const handleChange = (event) => {
 
     setFormState({
@@ -53,6 +55,13 @@ const Chats = () => {
               <button className="searchSubmit" onClick={onSubmit} > Submit </button>
             </div>
 
+            <h3 id="label" className='listTitle'>My conversations:</h3>
+            <div className='list'>
+              
+              {convos.map((convo) => {
+                console.log(convo.name)
+                return <Chat name={convo.name} id={convo._id}/>
+              })}
 
             <div className='convosWrapper'>
 
