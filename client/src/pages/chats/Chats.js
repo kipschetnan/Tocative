@@ -17,7 +17,7 @@ const Chats = () => {
   if (userConvoLoading) return <p>Loading logged in user...</p>;
   if (userConvoError) return <p>Error loading logged in user: {userConvoError.message}</p>;
 
-  console.log(userConvoData)
+  console.log(userConvoData.userConversations[0]._id)
   const handleChange = (event) => {
 
     setFormState({
@@ -52,7 +52,7 @@ const Chats = () => {
             <div className='list'>
 
               {userConvoData.userConversations.map((convo) => {
-                return <Chat name='hi'/>
+                return <Chat name='hi' id={convo._id}/>
               })}
 
             </div>
