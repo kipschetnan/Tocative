@@ -8,9 +8,14 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import { UPDATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import Footer from '../../components/footer/Footer';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProfilePage = () => {    
+
+    let navigate = useNavigate()
+
     const { username: userParam } = useParams();
 
     const [updateUser] = useMutation(UPDATE_USER);
@@ -47,40 +52,53 @@ const ProfilePage = () => {
         }
       };
 
+
+      const signOff = () => {
+
+        localStorage.clear()
+        console.log('Successfuly logged out.')
+        navigate('/login')
+
+      }
     return (
+      <div className='loginWrapper'>
         <div className='profileContainer'>
 
+
+          <div className='profileWrapper'>
+
+
+          
             <main className='userInfo'>
 
-                <div className='friendList'>
-                    <h1>Friends</h1>
-                    <FriendList 
-                        username={user.username}
-                        friendCount={user.friendCount}
-                        friends={user.friends}
-                    />
-                </div>
-                <div className='changeName'>
-                      <button className='btn ml-auto' onClick={updateClick}>
-                        Update Profile
-                      </button>
-                    
+              <div className='friendList'>
+                <h2>Friends: </h2>
+                <div className='line'></div>
+                <FriendList 
+                  username={user.username}
+                  friendCount={user.friendCount}
+                  friends={user.friends}
+                />
 
+                <div className='changeName'>
+                  <button className='editButton' onClick={updateClick}>
+                    Update Profile
+                  </button>
                 </div>
+              </div>
+
+              
+
             </main>
-  
-        <div className="flex-row justify-space-between mb-3">
-          <div className="col-12 mb-3 col-lg-8">
+
+            <button onClick={signOff} className='logout'>Sign out</button>
+
           </div>
-  
-          <div className="col-12 col-lg-3 mb-3">
-            <FriendList
-            />
-          </div>
+          <Footer />
+
         </div>
-        <div className="mb-3"></div>
       </div>
-    )
+  )
 }
 
 export default ProfilePage

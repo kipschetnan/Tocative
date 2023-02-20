@@ -55,6 +55,8 @@ function App() {
 
                 <Route path='/login' element={<LoginPage />} />
 
+                <Route exact path='/login' element={<LoginPage />} />
+
                 <Route path='/register' element={<RegisterPage />} />
 
                 <Route path='/' element={<Chats />} />
@@ -72,7 +74,7 @@ function App() {
 
         </div>
       </Router>
-    // </ApolloProvider>
+    </ApolloProvider>
 
   );
 }

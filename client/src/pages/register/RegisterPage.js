@@ -56,7 +56,7 @@ const RegisterPage = () => {
     <div className='loginWrapper'>
     <div className='registerContainer'>
 
-        <Formik   validationSchema={registerSchema}>
+        <Formik>
             
             <Form className='registerForm' onSubmit={onSubmit}>
 
