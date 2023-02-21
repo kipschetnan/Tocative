@@ -13,7 +13,9 @@ import Footer from '../../components/footer/Footer'
 const Chats = () => {
 
   const navigate = useNavigate()
-
+  if (!Auth.loggedIn()) {
+    navigate('/login')
+  }
   const [formState, setFormState] = useState({ username: ''})
   const [addFriend, { error }] = useMutation(ADD_FRIEND)
   const { loading: userConvoLoading, error: userConvoError, data: userConvoData } = useQuery(QUERY_USER_CONVERSATIONS);
@@ -25,9 +27,7 @@ const Chats = () => {
     return <p>Error loading logged in user: {userConvoError.message}</p>;
   }
   
-  if (!Auth.login) {
-    navigate('/login')
-  }
+  
 
 
   // console.log(userConvoData.userConversations)
