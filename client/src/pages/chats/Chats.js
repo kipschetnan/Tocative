@@ -63,14 +63,13 @@ const Chats = () => {
               <button className="searchSubmit" onClick={onSubmit} > Submit </button>
             </div>
 
-
             <div className='convosWrapper'>
 
               <h3 id="label" className='listTitle'>My conversations:</h3>
               <div className='list'>
 
                 {convos.map((convo) => {
-                  console.log(convo.name)
+
                   return <Chat name={convo.name} id={convo._id}/>
                 })}
 
