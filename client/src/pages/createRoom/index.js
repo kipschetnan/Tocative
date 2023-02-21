@@ -9,6 +9,9 @@ import Footer from '../../components/footer/Footer'
 
 
 const createRoom = () => {
+    if (!Auth.loggedIn()) {
+        navigate('/login')
+    }
     const navigate = useNavigate();
     const [formState, setFormState] = useState({
         name: '',
@@ -32,9 +35,12 @@ const createRoom = () => {
 
     if (userLoading) return <p>Loading logged in user...</p>;
     if (userError) {
-        navigate('/login')
+        
         return <p>Error loading logged in user: {userError.message}</p>;
     } 
+
+    
+   
 
     const handleChange = (event) => {
         console.log('handle change', event.target)

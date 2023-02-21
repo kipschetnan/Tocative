@@ -51,7 +51,7 @@ function App() {
           <div className='wrapper'>
             <div className='container'>
               
-              <LoginPage />
+              
 
               <Routes> 
 

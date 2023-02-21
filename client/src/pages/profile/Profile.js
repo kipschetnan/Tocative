@@ -12,6 +12,7 @@ import Footer from '../../components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const ProfilePage = () => {    
 
     let navigate = useNavigate()
@@ -23,7 +24,14 @@ const ProfilePage = () => {
       variables: { username: userParam },
     });
 
+
     const user = data?.me || data?.user || {};
+
+    
+    
+    if (!Auth.loggedIn()) {
+      navigate('/login')
+    }
 
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Link to="/profile" />;
@@ -40,7 +48,10 @@ const ProfilePage = () => {
             sign up or log in!
           </h4>
         );
+        
       }
+
+      
 
       const updateClick = async () => {
         try {

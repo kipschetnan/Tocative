@@ -19,12 +19,15 @@ const Chats = () => {
   const { loading: userConvoLoading, error: userConvoError, data: userConvoData } = useQuery(QUERY_USER_CONVERSATIONS);
 
   if (userConvoLoading) return <p>Loading logged in user...</p>;
+
   if (userConvoError) {
-    navigate('/login')
+    
     return <p>Error loading logged in user: {userConvoError.message}</p>;
   }
   
-  
+  if (!Auth.login) {
+    navigate('/login')
+  }
 
 
   // console.log(userConvoData.userConversations)
