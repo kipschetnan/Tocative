@@ -11,6 +11,7 @@ import { QUERY_CONVERSATION, QUERY_ME, QUERY_MESSAGES } from '../../utils/querie
 import { ADD_MESSAGE } from '../../utils/mutations';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
+
 import { Socket } from 'socket.io-client';
 import { io } from 'socket.io-client';
 
