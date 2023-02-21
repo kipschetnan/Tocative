@@ -17,6 +17,9 @@ const ProfilePage = () => {
 
     let navigate = useNavigate()
 
+    if (!Auth.loggedIn()) {
+      navigate('/login')
+    }
     const { username: userParam } = useParams();
 
     const [updateUser] = useMutation(UPDATE_USER);
@@ -26,12 +29,6 @@ const ProfilePage = () => {
 
 
     const user = data?.me || data?.user || {};
-
-    
-    
-    if (!Auth.loggedIn()) {
-      navigate('/login')
-    }
 
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Link to="/profile" />;
@@ -83,7 +80,7 @@ const ProfilePage = () => {
             <main className='userInfo'>
 
               <div className='boxWrapper'>
-
+                <h1>{user.firstName} {user.lastName}</h1>
                 <div className='friendList'>
                   <h2>Friends: </h2>
                   <div className='line'></div>
