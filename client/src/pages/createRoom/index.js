@@ -22,8 +22,8 @@ const createRoom = () => {
 
     const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
 
-    const [username, setUsername] = useState('')
-    const {  } = useQuery(QUERY_USER, {
+    const [ username, setUsername] = useState('')
+    const { error: friendError, data: friendData } = useQuery(QUERY_USER, {
         variables: { username },
         onCompleted: (data) => {
             setFormState({
@@ -58,15 +58,10 @@ const createRoom = () => {
 
     
     const onCreateConversation = async (event) => {
-        console.log('username is', username)
-        console.log('formstate is', formState.participants.length)
+        console.log('friend data is', friendData.user)
+        console.log('users friends is', userData.me.friends)
         event.preventDefault();
 
-        if (formState.participants.length === 0) {
-            console.log('User is not in your friends list')
-            setIsFriend(false)
-        } else {
-            setIsFriend(true)
             try {
                 const { data } = await createConversation({
                     variables: { ...formState },
@@ -76,10 +71,6 @@ const createRoom = () => {
             } catch (e) {
                 console.error(e);
             }
-            
-        }
-
-
     }
 
     return (
