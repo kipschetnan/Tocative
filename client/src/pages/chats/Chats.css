@@ -22,6 +22,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     
 }
 
@@ -39,7 +40,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 30px 0px
+  margin: 30px 0px;
+  justify-content: center;
+  align-items: center;
 }
 
 .list {
@@ -130,7 +133,8 @@
 .searchSubmit {
   height: 35px;
   width: 20%;
-  background-color: #F9FAFD;
+  background-color: #49c830;
+  color: white;
   border-radius: 5px;
   border: none;
   outline: none;
@@ -147,28 +151,44 @@
 }
 
 @media screen and (min-width: 600px) {
-    .mainWrapper {
-      width: 80%;
-    }
+  .list {
+    width: 80%;
+  }
+
+  .searchBar {
+    width: 80%;
+  }
   }
   @media screen and (min-width: 800px) {
-    .mainWrapper {
+    .list {
+      width: 70%;
+    }
+    .searchBar {
       width: 70%;
     }
   }
   @media screen and (min-width: 1000px) {
-    .mainWrapper {
+    .list {
+      width: 60%;
+    }
+    .searchBar {
       width: 60%;
     }
   }
   @media screen and (min-width: 1000px) {
-    .mainWrapper {
+    .list {
+      width: 50%;
+    }
+    .searchBar {
       width: 50%;
     }
   }
   @media screen and (min-width: 1000px) {
-    .mainWrapper {
-      width: 50%;
+    .list {
+      width: 40%;
+    }
+    .searchBar {
+      width: 40%;
     }
   }
 

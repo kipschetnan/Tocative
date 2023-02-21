@@ -82,27 +82,31 @@ const ProfilePage = () => {
           
             <main className='userInfo'>
 
-              <div className='friendList'>
-                <h2>Friends: </h2>
-                <div className='line'></div>
-                <FriendList 
-                  username={user.username}
-                  friendCount={user.friendCount}
-                  friends={user.friends}
-                />
+              <div className='boxWrapper'>
 
-                <div className='changeName'>
-                  <button className='editButton' onClick={updateClick}>
-                    Update Profile
-                  </button>
+                <div className='friendList'>
+                  <h2>Friends: </h2>
+                  <div className='line'></div>
+                  <FriendList 
+                    username={user.username}
+                    friendCount={user.friendCount}
+                    friends={user.friends}
+                  />
+
+                  <div className='changeName'>
+                    <button className='editButton' onClick={updateClick}>
+                      Update Profile
+                    </button>
+                  </div>
                 </div>
+                
               </div>
-
+              
+              <button onClick={signOff} className='logout'>Sign out</button>
               
 
+              
             </main>
-
-            <button onClick={signOff} className='logout'>Sign out</button>
 
           </div>
           <Footer />

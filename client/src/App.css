@@ -12,12 +12,13 @@
 .wrapper {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(10DEG, #C1C4C7, #D8DBDE);
+  background: linear-gradient(10DEG, #EFEEF1, #E3E4ED);
 }
 
 .container {
   width: 100%;
   height: 100vh;
+  
 }
 
 .loginWrapper {
