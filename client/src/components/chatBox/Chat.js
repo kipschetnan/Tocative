@@ -6,7 +6,7 @@ const Chat = ( {name, id} ) => {
   const url = `/messages/${id}`
   console.log(url)
   return (
-    <div>
+    <div key={id}>
       <Link className='link' to={url}>
         <div className='chatBox'>
             <div className='chatInfo'>
