@@ -151,6 +151,7 @@
 }
 
 @media screen and (min-width: 600px) {
+
   .list {
     width: 80%;
   }
@@ -164,9 +165,10 @@
       width: 70%;
     }
     .searchBar {
-      width: 70%;
+      width: 80%;
     }
   }
+    
   @media screen and (min-width: 1000px) {
     .list {
       width: 60%;
@@ -176,6 +178,7 @@
     }
   }
   @media screen and (min-width: 1000px) {
+
     .list {
       width: 50%;
     }

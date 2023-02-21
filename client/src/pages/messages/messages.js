@@ -7,10 +7,21 @@ import ReceiveMessage from '../../components/receiveMessage/ReceiveMessage';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation} from '@apollo/client'
-import { QUERY_CONVERSATION, QUERY_ME } from '../../utils/queries';
+import { QUERY_CONVERSATION, QUERY_ME, QUERY_MESSAGES } from '../../utils/queries';
 import { ADD_MESSAGE } from '../../utils/mutations';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
+
+import { Socket } from 'socket.io-client';
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:3001');
+
+console.log('Socket is:', socket)
+
+socket.on('connect', () => {
+  console.log('Connected to socket.io server');
+});
 
 const Messages = () => {
   const navigate = useNavigate()
@@ -18,10 +29,14 @@ const Messages = () => {
     navigate('/login')
   }
 
+  const [messages, setMessages] = useState([])
 
   const { convoId } = useParams();
-  const { loading, data  } = useQuery(QUERY_CONVERSATION, {
-    variables: { id: convoId }
+  const { loading } = useQuery(QUERY_CONVERSATION, {
+    variables: { id: convoId },
+    onCompleted: (data) => {
+      setMessages(data.conversation.messages)
+    }
   })
   const [messageText, setMessageText] = useState({ messageText: ''})
   const [addMessage, { error }] = useMutation(ADD_MESSAGE)
@@ -40,50 +55,27 @@ const Messages = () => {
     });
   };
 
+  socket.on('message', (message) => {
+    setMessages([...messages, message])
+  })
+
   const onSubmit = async (event) => {
     event.preventDefault()
     console.log(messageText)
     console.log(convoId)
     try {
       const { data } = await addMessage({
-        variables: { messageText: messageText.messageText, conversation: convoId }
+        variables: { messageText: messageText.messageText, conversation: convoId, sender: userData.me.username }
       })
+      console.log('This is data:', data)
+      socket.emit('message', data.addMessage)
     } catch (e) {
       console.error(e)
     }
-    window.location.reload()
+
+    setMessageText({messageText: ''})
+    // window.location.reload()
   }
-  //const conversation = convoData.conversation
-
-
-  //console.log(conversation)
-  //const sendMessage = async (e) => {
-
-  //   e.preventDefault()
-
-  //   if (currentMessage !== "") {
-  //     const messageData = {
-  //       Room: currentRoom,
-  //       Message: currentMessage,
-  //       Time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
-  //     }
-
-  //     await socket.emit('send_message', messageData)
-  //     setMessageList((list) => [...list, messageData])
-
-
-  //   }
-  // }
-
-  // useEffect( () => {
-  //   socket.on('receive_message', (data) => {
-  //     console.log(data)
-  //     setMessageList((list) => [...list, data])
-  //   })
-
-  //   return () => socket.removeListener('receive_message')
-
-  // }, [socket])
 
 
   if (loading) return <p>Loading</p>
@@ -102,9 +94,9 @@ const Messages = () => {
 
             <div className='messagesBody'>
               
-              {data.conversation.messages.map((messageContent) => {
+              {messages.map((messageContent) => {
                 if(userData.me.username === messageContent.sender) {
-                  return <SendMessage name={messageContent.sender} message={messageContent.messageText}/>
+                  return <SendMessage name='You' message={messageContent.messageText}/>
                 }else {
                   return <ReceiveMessage name={messageContent.sender} message={messageContent.messageText}/>
                 }
