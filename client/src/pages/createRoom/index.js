@@ -31,7 +31,10 @@ const createRoom = () => {
     const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
 
     if (userLoading) return <p>Loading logged in user...</p>;
-    if (userError) return <p>Error loading logged in user: {userError.message}</p>;
+    if (userError) {
+        navigate('/login')
+        return <p>Error loading logged in user: {userError.message}</p>;
+    } 
 
     const handleChange = (event) => {
         console.log('handle change', event.target)
@@ -71,7 +74,7 @@ const createRoom = () => {
 
                 <div className='formWrapper'>
                 
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={onCreateConversation}>
                         <div className='section1'>
                             <input className='searchInput' type='text' placeholder='Enter Your Chat Name' value={formState.name} onChange={handleChange2}></input>
                             <input className='searchInput' type='text' placeholder='Enter a username' value={username} onChange={handleChange}></input>

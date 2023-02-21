@@ -50,8 +50,10 @@ function App() {
 
           <div className='wrapper'>
             <div className='container'>
+              
+              <LoginPage />
 
-              <Routes>
+              <Routes> 
 
                 <Route path='/login' element={<LoginPage />} />
 

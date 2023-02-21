@@ -9,8 +9,9 @@ import { useParams } from 'react-router-dom';
 import { useQuery, useMutation} from '@apollo/client'
 import { QUERY_CONVERSATION, QUERY_ME } from '../../utils/queries';
 import { ADD_MESSAGE } from '../../utils/mutations';
-
+import { useNavigate } from 'react-router-dom';
 const Messages = () => {
+  const navigate = useNavigate()
 
 
   const { convoId } = useParams();
@@ -22,7 +23,10 @@ const Messages = () => {
   const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
 
   if (userLoading) return <p>Loading logged in user...</p>;
-  if (userError) return <p>Error loading logged in user: {userError.message}</p>;
+  if (userError) {
+    navigate('/login')
+    return <p>Error loading logged in user: {userError.message}</p>;
+  } 
 
   const handleChange = (event) => {
 
