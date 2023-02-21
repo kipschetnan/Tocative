@@ -54,22 +54,13 @@ const Chats = () => {
               <input type="text" placeholder="Search For a Friend..." className="searchInput" value={formState.username} onChange={handleChange}></input>
               <button className="searchSubmit" onClick={onSubmit} > Submit </button>
             </div>
-
-            <h3 id="label" className='listTitle'>My conversations:</h3>
-            <div className='list'>
-              
-              {convos.map((convo) => {
-                console.log(convo.name)
-                return <Chat name={convo.name} id={convo._id}/>
-              })}
-
             <div className='convosWrapper'>
 
               <h3 id="label" className='listTitle'>My conversations:</h3>
               <div className='list'>
 
-                {userConvoData.userConversations.map((convo) => {
-                  return <Chat  />
+                {convos.map((convo) => {
+                  return <Chat name={convo.name} id={convo._id}/>
                 })}
 
               </div>
