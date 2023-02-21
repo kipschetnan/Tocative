@@ -9,7 +9,6 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import ProfilePage from './pages/profile/Profile';
 import CreateRoom from './pages/createRoom/index';
-// import { io } from 'socket.io-client';
 
 const httpLink = createHttpLink({
   uri: '/graphql',

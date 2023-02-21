@@ -53,6 +53,7 @@ const Chats = () => {
     } catch (e) {
       console.error(e)
     }
+    setFormState({username: ''})
     window.location.reload()
   }
 
