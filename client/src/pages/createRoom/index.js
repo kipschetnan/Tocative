@@ -5,7 +5,7 @@ import { QUERY_ME, QUERY_USER } from '../../utils/queries'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import Auth from '../../utils/auth'
 import './index.css'
-import Footer from '../../components/Footer/Footer'
+import Footer from '../../components/footer/Footer'
 
 
 const createRoom = () => {
@@ -22,7 +22,7 @@ const createRoom = () => {
 
     const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
 
-    const [ username, setUsername] = useState('')
+    const [username, setUsername] = useState('')
     const { error: friendError, data: friendData } = useQuery(QUERY_USER, {
         variables: { username },
         onCompleted: (data) => {
@@ -56,21 +56,21 @@ const createRoom = () => {
         setFormState(newFormState)
     }
 
-    
+
     const onCreateConversation = async (event) => {
         console.log('friend data is', friendData.user)
         console.log('users friends is', userData.me.friends)
         event.preventDefault();
 
-            try {
-                const { data } = await createConversation({
-                    variables: { ...formState },
-                });
-                const convo = data.createConversation
-                navigate(`/messages/${convo._id}`)
-            } catch (e) {
-                console.error(e);
-            }
+        try {
+            const { data } = await createConversation({
+                variables: { ...formState },
+            });
+            const convo = data.createConversation
+            navigate(`/messages/${convo._id}`)
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
