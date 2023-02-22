@@ -54,6 +54,7 @@
     padding: 15px;
     margin-top: 0px;
     height: 60vh;
+    overflow-x: hidden;
 }
 
 .footer {
@@ -141,6 +142,10 @@
   cursor: pointer;
   transition: 0.3s;
   box-shadow: 1.8px 1.8px 2.2px rgb(0 0 0 / 5%), 4.3px 4.4px 5.3px rgb(0 0 0 / 7%), 8px 8.3px 10px rgb(0 0 0 / 7%), 14.3px 14.7px 17.9px rgb(0 0 0 / 8%), 26.7px 27.6px 33.4px rgb(0 0 0 / 7%), 64px 66px 80px rgb(0 0 0 / 7%);
+}
+
+.searchSubmit:hover {
+  filter: brightness(90%);
 }
 
 #tab3 {
