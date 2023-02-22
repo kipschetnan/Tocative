@@ -23,7 +23,7 @@ const Chat = ( {name, id} ) => {
   console.log(url)
   return (
     <div key={id}>
-      
+    
         <div className='chatBox'>
             <div className='chatInfo'>
               

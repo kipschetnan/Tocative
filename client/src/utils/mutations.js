@@ -96,8 +96,8 @@ export const REMOVE_CONVERSATION = gql`
 `
 
 export const UPDATE_USER = gql`
-  mutation updateUser($id: ID!, $username: String!) {
-    updatedUser(id: $id, username: $username) {
+  mutation updateUser($updateUserId: ID!, $username: String!) {
+    updateUser(id: $updateUserId, username: $username) {
       username
       _id
     }

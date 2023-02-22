@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link, useParams } from 'react-router-dom';
 import './Profile.css'
 import Navbar from '../../components/Navbar/Navbar'
@@ -22,7 +22,10 @@ const ProfilePage = () => {
   }
   const { username: userParam } = useParams();
 
-  const [updateUser] = useMutation(UPDATE_USER);
+  const [username, setUsername] = useState('')
+  const [edit, setEdit] = useState(false)
+
+  const [updateUser, { error }] = useMutation(UPDATE_USER);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
@@ -50,15 +53,29 @@ const ProfilePage = () => {
 
 
 
-  const updateClick = async () => {
+  const editClick = async () => {
+    setEdit(true)
+  };
+
+  const onChangeHandle = (event) => {
+    setUsername(event.target.value)
+  }
+
+  const update = async (e) => {
+    e.preventDefault()
+    console.log('This is username: ', username)
+    console.log('This is id: ', user._id)
     try {
-      await updateUser({
-        variables: { id: user._id },
+      const { data } = await updateUser({
+        variables: { updateUserId: user._id, username: username},
       });
     } catch (e) {
       console.error(e);
     }
-  };
+
+    setEdit(false)
+    setUsername('')
+  }
 
 
   const signOff = () => {
@@ -88,12 +105,22 @@ const ProfilePage = () => {
                   username={user.username}
                   friendCount={user.friendCount}
                   friends={user.friends}
+                  first={user.firstName}
+                  last={user.lastName}
                 />
 
                 <div className='changeName'>
-                  <button className='editButton' onClick={updateClick}>
-                    Update Profile
-                  </button>
+                  {edit ? (
+                    <div>
+                      <input placeholder='Enter a new username' className='searchInput' value={username} onChange={onChangeHandle}></input>
+                      <button className='editButton' onClick={update}>Update</button>
+                    </div>
+                  ) : (
+                    <button className='editButton' onClick={editClick}>
+                      Update Profile
+                    </button>
+                  )}
+                  
                 </div>
               </div>
 

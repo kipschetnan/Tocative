@@ -25,8 +25,7 @@ socket.on('connect', () => {
 });
 
 const Messages = () => {
-
-  
+  const navigate = useNavigate()
   // const chatBoxRef = React.createRef()
   if (!Auth.login) {
     navigate('/login')
@@ -41,9 +40,6 @@ const Messages = () => {
       setMessages(data.conversation.messages)
     }
   })
-
-  
-  
   
   const onSubmit = async (event) => {
     event.preventDefault()
@@ -71,20 +67,7 @@ const Messages = () => {
     });
   };
 
-
-  //  ---------------------
-
-  
-
-  const navigate = useNavigate()
-
-
-  if (!Auth.login) {
-    navigate('/login')
-  }
-
-
-  
+ 
   const [messageText, setMessageText] = useState({ messageText: ''})
   const [addMessage, { error }] = useMutation(ADD_MESSAGE)
   const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
@@ -103,6 +86,7 @@ const Messages = () => {
   const chatRoomName = messages.map( (messageContent) => {
     if(userData.me.username === messageContent.sender) {
       
+
     }
     
     else {
@@ -112,8 +96,6 @@ const Messages = () => {
     }
     
   })
-
-
 
 
   if (loading) return <p>Loading</p>
@@ -141,6 +123,7 @@ const Messages = () => {
                   {messages.map((messageContent) => {
                     if(userData.me.username === messageContent.sender) {
                       return <SendMessage name='You: ' message={messageContent.messageText}/>
+
                     }else {
                       return <ReceiveMessage name={messageContent.sender} message={messageContent.messageText}/>
                     }

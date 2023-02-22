@@ -23,6 +23,8 @@ export const QUERY_USER = gql`
       friends {
         _id
         username
+        firstName
+        lastName
       }
       messages {
         _id
@@ -44,6 +46,8 @@ export const QUERY_ME = gql`
       friends {
         _id
         username
+        firstName
+        lastName
       }
       messages {
         _id
