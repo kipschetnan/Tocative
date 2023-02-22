@@ -18,7 +18,6 @@ const RegisterPage = () => {
     })
 
     const [formState, setFormState] = useState({
-        firstname: '',
         username: '',
         password: '',
         firstName: '',
@@ -57,7 +56,7 @@ const RegisterPage = () => {
     <div className='loginWrapper'>
     <div className='registerContainer'>
 
-        <Formik   validationSchema={registerSchema}>
+        <Formik>
             
             <Form className='registerForm' onSubmit={onSubmit}>
 

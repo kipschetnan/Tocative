@@ -26,10 +26,7 @@ const LoginPage = () => {
       password:'',
     }
   
-  const loginSchema = Yup.object().shape({
-      username: Yup.string().required('Username cannot be blank.'),
-      password: Yup.string().required('Password cannot be blank.')
-  })
+  
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -47,7 +44,7 @@ const LoginPage = () => {
 
     // clear form values
     setFormState({
-      email: '',
+      username: '',
       password: '',
     });
   }
@@ -55,7 +52,7 @@ const LoginPage = () => {
   return (
     <div className='loginWrapper'>
       <div className='loginContainer' >
-        <Formik initialValues={initialValues} validationSchema={loginSchema}>
+        <Formik initialValues={initialValues} >
             <Form className='formContainer' onSubmit={onSubmit}>
               <div className='loginSection'>
                 <div className='inputs'>
