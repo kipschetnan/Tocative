@@ -11,6 +11,7 @@ import { QUERY_CONVERSATION, QUERY_ME, QUERY_MESSAGES } from '../../utils/querie
 import { ADD_MESSAGE } from '../../utils/mutations';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
+import ScrollToBottom from 'react-scroll-to-bottom'
 
 import { Socket } from 'socket.io-client';
 import { io } from 'socket.io-client';
@@ -24,10 +25,8 @@ socket.on('connect', () => {
 });
 
 const Messages = () => {
-  const navigate = useNavigate()
-  if (!Auth.login) {
-    navigate('/login')
-  }
+
+  
 
   const [messages, setMessages] = useState([])
 
@@ -38,27 +37,15 @@ const Messages = () => {
       setMessages(data.conversation.messages)
     }
   })
-  const [messageText, setMessageText] = useState({ messageText: ''})
-  const [addMessage, { error }] = useMutation(ADD_MESSAGE)
-  const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
 
-  if (userLoading) return <p>Loading logged in user...</p>;
-  if (userError) {
-    return <p>Error loading logged in user: {userError.message}</p>;
-  }
+  useEffect(() => {
+    socket.on('message', (message) => {
+      setMessages((list) => [...messages, message])
+    })
   
+  }, [socket])
+
   
-  const handleChange = (event) => {
-
-    setMessageText({
-      messageText: event.target.value
-    });
-  };
-
-  socket.on('message', (message) => {
-    setMessages([...messages, message])
-  })
-
   const onSubmit = async (event) => {
     event.preventDefault()
     console.log(messageText)
@@ -69,13 +56,61 @@ const Messages = () => {
       })
       console.log('This is data:', data)
       socket.emit('message', data.addMessage)
+      setMessages((list) => [...messages, data.addMessage])
+
     } catch (e) {
       console.error(e)
     }
 
-    setMessageText({messageText: ''})
-    // window.location.reload()
   }
+
+  
+  const handleChange = (event) => {
+
+    setMessageText({
+      messageText: event.target.value
+    });
+  };
+
+
+  //  ---------------------
+
+  
+
+  const navigate = useNavigate()
+  if (!Auth.login) {
+    navigate('/login')
+  }
+
+
+  
+  const [messageText, setMessageText] = useState({ messageText: ''})
+  const [addMessage, { error }] = useMutation(ADD_MESSAGE)
+  const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
+
+  if (userLoading) return <p>Loading logged in user...</p>;
+  if (userError) {
+    return <p>Error loading logged in user: {userError.message}</p>;
+  }
+  
+
+  //  ---------------------
+
+
+  let roomName = ''
+
+  const chatRoomName = messages.map( (messageContent) => {
+    if(userData.me.username === messageContent.sender) {
+      
+    }else {
+      roomName = messageContent.sender
+    }
+    
+  })
+
+
+  let myUser = userData.me.username
+
 
 
   if (loading) return <p>Loading</p>
@@ -83,26 +118,37 @@ const Messages = () => {
     <div className='loginWrapper'>
       <div className='messagesContainer'>
         <main className='liveChat'>
-          <div className='header'>
-            <Link className='exitLink' to='/'>
-              <h3>Exit</h3>
+          <div className='headerRoom'>
+            <Link className='exitLink' id='exitLink' to='/'>
+             Exit
             </Link>
+            
+            <h3 className='chatName'> { roomName }</h3>
           </div>
 
           <div className='chatBody'>
 
 
-            <div className='messagesBody'>
-              
-              {messages.map((messageContent) => {
-                if(userData.me.username === messageContent.sender) {
-                  return <SendMessage name='You' message={messageContent.messageText}/>
-                }else {
-                  return <ReceiveMessage name={messageContent.sender} message={messageContent.messageText}/>
-                }
-              })}
+            {/* <div className='messagesBody'> */}
 
-            </div>
+            <ScrollToBottom className='messagesBody'>
+
+              <div className='bubbles'>
+                <div className='bubblesWrapper'>
+                  {messages.map((messageContent) => {
+                    if(userData.me.username === messageContent.sender) {
+                      return <SendMessage name='You' message={messageContent.messageText}/>
+                    }else {
+                      return <ReceiveMessage name={messageContent.sender} message={messageContent.messageText}/>
+                    }
+                  })}
+
+                </div>  
+
+              </div>
+            </ScrollToBottom>
+
+            {/* </div> */}
 
             <form className='messageForm' onSubmit={onSubmit}>
               <input className='textBox' placeholder='Send a message...' value={messageText.messageText} onChange={handleChange}></input>

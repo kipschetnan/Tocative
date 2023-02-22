@@ -7,7 +7,7 @@ const Chat = ( {name, id} ) => {
   console.log(url)
   return (
     <div key={id}>
-      <Link className='link' to={url}>
+      <Link className='link' to={url} headerName='name'>
         <div className='chatBox'>
             <div className='chatInfo'>
                 <h3> {name} </h3>

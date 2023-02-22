@@ -74,7 +74,8 @@ const Chats = () => {
 
                 {convos.map((convo) => {
 
-                  return <Chat name={convo.name} id={convo._id}/>
+                  return <Chat name={convo.name} id={convo._id} />
+
                 })}
 
               </div>
