@@ -1,23 +1,24 @@
 import React, { useState } from 'react'
 import './Chats.css'
-import Search from '../../components/searchBar/Search'
-import Chat from '../../components/chatBox/Chat'
+import Search from '../../components/SearchBar/Search'
+import Chat from '../../components/ChatBox/Chat'
 import { Link, useNavigate } from 'react-router-dom'
-import {ADD_FRIEND} from '../../utils/mutations'
+import {ADD_FRIEND, REMOVE_CONVERSATION} from '../../utils/mutations'
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../../utils/auth'
 import { QUERY_USER_CONVERSATIONS } from '../../utils/queries'
-import Footer from '../../components/footer/Footer'
+import Footer from '../../components/Footer/Footer'
 
 
 const Chats = () => {
 
   const navigate = useNavigate()
-
+  if (!Auth.loggedIn()) {
+    navigate('/login')
+  }
   const [formState, setFormState] = useState({ username: ''})
   const [addFriend, { error }] = useMutation(ADD_FRIEND)
   const { loading: userConvoLoading, error: userConvoError, data: userConvoData } = useQuery(QUERY_USER_CONVERSATIONS);
-
   if (userConvoLoading) return <p>Loading logged in user...</p>;
 
   if (userConvoError) {
@@ -25,11 +26,6 @@ const Chats = () => {
     return <p>Error loading logged in user: {userConvoError.message}</p>;
   }
   
-  if (!Auth.login) {
-    navigate('/login')
-  }
-
-
   // console.log(userConvoData.userConversations)
   const initialConvos = userConvoData.userConversations
   const convos = [...initialConvos].reverse()
