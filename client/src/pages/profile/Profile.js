@@ -88,6 +88,8 @@ const ProfilePage = () => {
                   username={user.username}
                   friendCount={user.friendCount}
                   friends={user.friends}
+                  first={user.firstName}
+                  last={user.lastName}
                 />
 
                 <div className='changeName'>
