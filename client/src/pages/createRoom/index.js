@@ -77,20 +77,28 @@ const createRoom = () => {
         <div className='loginWrapper'>
 
             <div className='createRoomWrapper'>
+                
+                <div className='formWrapper2'>
+                    
+                    <div className='formWrapper'>
 
-                <div className='formWrapper'>
+                        <form onSubmit={onCreateConversation}>
+                            <div className='section1'>
+                                <div className='inputsWrap'>
 
-                    <form onSubmit={onCreateConversation}>
-                        <div className='section1'>
-                            <input className='searchInput' type='text' placeholder='Enter Your Chat Name' value={formState.name} onChange={handleChange2}></input>
-                            <input className='searchInput' type='text' placeholder='Enter a username' value={username} onChange={handleChange}></input>
-                            <button className='searchButton2' type='submit'>
-                                Create Conversation
-                            </button>
-                        </div>
-                    </form>
+                                    <input className='searchInput2' type='text' placeholder='Enter Your Chat Name' value={formState.name} onChange={handleChange2}></input>
+                                    <input className='searchInput2' type='text' placeholder='Enter a username' value={username} onChange={handleChange}></input>
+                                
+                                </div>
+                                <button className='searchButton2' type='submit'>
+                                    Create Conversation
+                                </button>
+                            </div>
+                        </form>
 
-                    {isFriend ? (<p></p>) : (<p className='notFriend'>User is not in your friends list.</p>)}
+                        {isFriend ? (<p></p>) : (<p className='notFriend'>User is not in your friends list.</p>)}
+                    </div>
+
                 </div>
                 {/* <div className='friendList2'>
                     <h2>Friends List: </h2>

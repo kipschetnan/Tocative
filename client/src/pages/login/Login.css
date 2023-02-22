@@ -1,7 +1,5 @@
 .loginWrapper {
-    background-repeat: no-repeat;
-    background-image: url("./images/bg-img.jpeg");
-    background-size: cover;
+    
     display: flex;
 }
 
@@ -133,39 +131,37 @@ span {
     color: red;
 }
 
-@media screen and (min-width: 800px) {
-    
-}
+
 
 @media screen and (min-width: 600px) {
     .loginContainer {
       width: 80%;
     }
-    }
-    @media screen and (min-width: 800px) {
-      .loginContainer {
-        width: 70%;
-      }
-    }
-    @media screen and (min-width: 1000px) {
+}
+  @media screen and (min-width: 800px) {
     .loginContainer {
-        width: 60%;
+      width: 70%;
     }
+  }
+  @media screen and (min-width: 1000px) {
+  .loginContainer {
+      width: 60%;
+  }
+  }
+  @media screen and (min-width: 1000px) {
+    .loginContainer {
+      width: 50%;
     }
-    @media screen and (min-width: 1000px) {
-      .loginContainer {
-        width: 50%;
-      }
+  }
+  @media screen and (min-width: 1000px) {
+    .loginContainer {
+      width: 40%;
     }
-    @media screen and (min-width: 1000px) {
-      .loginContainer {
-        width: 40%;
-      }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .userInfo {
+      width: 30%;
     }
-  
-    @media screen and (min-width: 1200px) {
-      .userInfo {
-        width: 30%;
-      }
-    }
-  
+  }
+

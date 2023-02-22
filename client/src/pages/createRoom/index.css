@@ -3,29 +3,55 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    position: relative;
     height: 100vh;
     width: 100%;
+    justify-content: center;
 
+}
+
+.formWrapper2 {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .formWrapper {
-    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    width: 100%;
     gap: 15px;
-    margin-top: 15%;
+    padding: 30px;
 }
 
 .section1 {
-    display: block;
+    padding: 30px;
+    
+}
+
+.inputsWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.searchInput2 {
     width: 100%;
+    height: 35px;
+    background-color: #F9FAFD;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    box-shadow: 1.8px 1.8px 2.2px rgb(0 0 0 / 5%), 4.3px 4.4px 5.3px rgb(0 0 0 / 7%), 8px 8.3px 10px rgb(0 0 0 / 7%), 14.3px 14.7px 17.9px rgb(0 0 0 / 8%), 26.7px 27.6px 33.4px rgb(0 0 0 / 7%), 64px 66px 80px rgb(0 0 0 / 7%);
 }
 
 .searchButton2 {
     margin-top: 15px;
-    width: 90%;
+    width: 100%;
     height: 40px;
     background-color: #49c830;
     color: white;
@@ -50,3 +76,27 @@
     padding: 30px;
     color: white;
 }
+
+
+@media screen and (min-width: 600px) {
+    .formWrapper {
+      width: 80%;
+    }
+}
+  @media screen and (min-width: 800px) {
+    .formWrapper {
+      width: 70%;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+  .formWrapper {
+      width: 60%;
+  }
+  }
+  @media screen and (min-width: 1000px) {
+    .formWrapper {
+      width: 50%;
+    }
+  }
+  
+  
