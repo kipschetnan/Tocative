@@ -22,6 +22,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     
 }
 
@@ -40,11 +41,7 @@
   display: flex;
   flex-direction: column;
   margin: 30px 0px;
-  box-shadow: 0px -2px 30px -5px rgba(0,0,0,0.45);
-  background-color: #FFFFFF;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
+  justify-content: center;
   align-items: center;
 }
 
@@ -136,7 +133,8 @@
 .searchSubmit {
   height: 35px;
   width: 20%;
-  background-color: #F9FAFD;
+  background-color: #49c830;
+  color: white;
   border-radius: 5px;
   border: none;
   outline: none;
@@ -153,28 +151,47 @@
 }
 
 @media screen and (min-width: 600px) {
-    .mainWrapper {
+
+  .list {
+    width: 80%;
+  }
+
+  .searchBar {
+    width: 80%;
+  }
+  }
+  @media screen and (min-width: 800px) {
+    .list {
+      width: 70%;
+    }
+    .searchBar {
       width: 80%;
     }
   }
-  @media screen and (min-width: 800px) {
-    .mainWrapper {
-      width: 70%;
-    }
-  }
+    
   @media screen and (min-width: 1000px) {
-    .mainWrapper {
+    .list {
+      width: 60%;
+    }
+    .searchBar {
       width: 60%;
     }
   }
   @media screen and (min-width: 1000px) {
-    .mainWrapper {
+
+    .list {
+      width: 50%;
+    }
+    .searchBar {
       width: 50%;
     }
   }
   @media screen and (min-width: 1000px) {
-    .mainWrapper {
-      width: 50%;
+    .list {
+      width: 40%;
+    }
+    .searchBar {
+      width: 40%;
     }
   }
 
