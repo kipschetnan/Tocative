@@ -121,10 +121,16 @@ const resolvers = {
 
       const currentUser = await User.findById(context.user._id)
       const friend = await User.findOne({ username })
+      if(!friend) {
+        throw new Error('User not found')
+      }
       console.log(friend)
       console.log(context.user._id)
       const updatedUser = currentUser.friends.push(friend)
+      const updatedFriend = friend.friends.push(currentUser)
       await currentUser.save()
+      console.log('This is current user: ', currentUser)
+      console.log('This is friend: ', friend)
       return currentUser
 
     },
@@ -132,10 +138,6 @@ const resolvers = {
       try {
         const currentUser = await User.findById(context.id);
         const friendIndex = currentUser.friends.indexOf(friendId);
-
-        if (friendIndex === -1) {
-          throw new Error("Friend not found");
-        }
 
         currentUser.friends.splice(friendIndex, 1);
         await currentUser.save();
