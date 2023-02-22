@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import './style.css'
-import './Messages.js'
+import './messages.js'
 import SendMessage from '../../components/SendMessage/SendMessage';
 import ReceiveMessage from '../../components/ReceiveMessage/ReceiveMessage';
 import { Link } from 'react-router-dom'
