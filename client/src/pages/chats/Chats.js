@@ -147,8 +147,6 @@ const Chats = () => {
             </div>
             
           </div>
- HEAD
-
 
           <Footer />
         </main>
