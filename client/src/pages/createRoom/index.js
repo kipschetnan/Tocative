@@ -36,7 +36,15 @@ const createRoom = () => {
     if (userLoading) return <p>Loading logged in user...</p>;
     if (userError) {
         
-        return <p>Error loading logged in user: {userError.message}</p>;
+        return (
+            <div>
+          <p>Error loading logged in user: {userConvoError.message}</p>
+          <p>Try Logging in again!</p>
+          <a href='/login'>
+            <button>Login or Signup</button>
+          </a>
+          </div>
+          );
     } 
 
     

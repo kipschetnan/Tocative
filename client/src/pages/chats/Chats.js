@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import './Chats.css'
 import Search from '../../components/searchBar/Search'
 import Chat from '../../components/chatBox/Chat'
@@ -22,7 +22,15 @@ const Chats = () => {
 
   if (userConvoError) {
     
-    return <p>Error loading logged in user: {userConvoError.message}</p>;
+    return (
+      <div>
+    <p>Error loading logged in user: {userConvoError.message}</p>
+    <p>Try Logging in again!</p>
+    <a href='/login'>
+      <button>Login or Signup</button>
+    </a>
+    </div>
+    );
   }
   
   if (!Auth.login) {
@@ -56,6 +64,7 @@ const Chats = () => {
     setFormState({username: ''})
     window.location.reload()
   }
+
 
   return (
     <div className='loginWrapper'>
