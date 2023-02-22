@@ -9,14 +9,24 @@ I want to conveniently message my freinds,
 So that I can give and receive information conveniently.
 
 ## Screenshots
+* Register Page
+![Screenshot](register.png)
+
+* Login Page
+![Screenshot](login.png)
 
 ## Technologies
 * CSS
 * React
+* JavaScript
+* Apollo
 
 
 ## Challenges
-Getting socket.io to work proved to be difficult to 
+Getting the chat functionality proved to be very difficult. It was also a challenge to implement the create room function up and running.
+
+## Successes
+Came out knowing a lot more about React. It will be easier to get better at it going forward.
 
 ## Contributors
 * Seve Palattao
@@ -24,3 +34,6 @@ Getting socket.io to work proved to be difficult to
 * Jesus Hernandez
 * Kallie O'Gara
 * Seeha Sangwang
+
+## LICENSE 🔑
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
