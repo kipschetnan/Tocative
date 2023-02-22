@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import { UPDATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-import Footer from '../../components/footer/Footer';
+import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 
 

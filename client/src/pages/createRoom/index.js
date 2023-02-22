@@ -5,7 +5,7 @@ import { QUERY_ME, QUERY_USER } from '../../utils/queries'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import Auth from '../../utils/auth'
 import './index.css'
-import Footer from '../../components/footer/Footer'
+import Footer from '../../components/Footer/Footer'
 
 
 const createRoom = () => {

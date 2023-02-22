@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import './Chats.css'
-import Search from '../../components/searchBar/Search'
-import Chat from '../../components/chatBox/Chat'
+import Search from '../../components/SearchBar/Search'
+import Chat from '../../components/ChatBox/Chat'
 import { Link, useNavigate } from 'react-router-dom'
 import {ADD_FRIEND, REMOVE_CONVERSATION} from '../../utils/mutations'
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../../utils/auth'
 import { QUERY_USER_CONVERSATIONS } from '../../utils/queries'
-import Footer from '../../components/footer/Footer'
+import Footer from '../../components/Footer/Footer'
 
 
 const Chats = () => {
