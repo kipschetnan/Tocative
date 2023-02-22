@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useQuery ,useMutation} from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import { CREATE_CONVERSATION } from '../../utils/mutations'
 import { QUERY_ME, QUERY_USER } from '../../utils/queries'
 import { Link, useParams, useNavigate } from 'react-router-dom'
@@ -9,29 +9,31 @@ import Footer from '../../components/footer/Footer'
 
 
 const createRoom = () => {
+    const navigate = useNavigate();
     if (!Auth.loggedIn()) {
         navigate('/login')
     }
-    const navigate = useNavigate();
+
     const [formState, setFormState] = useState({
         name: '',
         participants: []
     });
+    const [isFriend, setIsFriend] = useState(true)
+
+    const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
 
     const [username, setUsername] = useState('')
-    const {  } = useQuery(QUERY_USER, {
-        variables: {username},
+    const { error: friendError, data: friendData } = useQuery(QUERY_USER, {
+        variables: { username },
         onCompleted: (data) => {
             setFormState({
                 name: formState.name,
                 participants: [data.user._id]
             })
         }
-    })       
-    
-    const [createConversation, { error }] = useMutation(CREATE_CONVERSATION);
+    })
 
-    const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
+    const [createConversation, { error }] = useMutation(CREATE_CONVERSATION);
 
     if (userLoading) return <p>Loading logged in user...</p>;
     if (userError) {
@@ -47,8 +49,6 @@ const createRoom = () => {
           );
     } 
 
-    
-   
 
     const handleChange = (event) => {
         console.log('handle change', event.target)
@@ -56,7 +56,7 @@ const createRoom = () => {
     }
     const handleChange2 = (event) => {
         console.log("Handlechange2", event.target.value)
-        const newFormState = { 
+        const newFormState = {
             name: event.target.value,
             participants: formState.participants
         }
@@ -64,11 +64,12 @@ const createRoom = () => {
         setFormState(newFormState)
     }
 
+
     const onCreateConversation = async (event) => {
-        console.log('username is', username)
-        console.log('formstate is', formState)
+        console.log('friend data is', friendData.user)
+        console.log('users friends is', userData.me.friends)
         event.preventDefault();
-        console.log(formState)
+
         try {
             const { data } = await createConversation({
                 variables: { ...formState },
@@ -78,7 +79,6 @@ const createRoom = () => {
         } catch (e) {
             console.error(e);
         }
-        
     }
 
     return (
@@ -87,7 +87,7 @@ const createRoom = () => {
             <div className='createRoomWrapper'>
 
                 <div className='formWrapper'>
-                
+
                     <form onSubmit={onCreateConversation}>
                         <div className='section1'>
                             <input className='searchInput' type='text' placeholder='Enter Your Chat Name' value={formState.name} onChange={handleChange2}></input>
@@ -97,22 +97,24 @@ const createRoom = () => {
                             </button>
                         </div>
                     </form>
-                    
+
+                    {isFriend ? (<p></p>) : (<p className='notFriend'>User is not in your friends list.</p>)}
+
                     <div className='friendList'>
                         <h2>Friends List: </h2>
-                            {userData.me.friends.map(item => (
-                                <ul key={item._id}>
-                                    <div>{item.username}</div>
-                                </ul>
-                            ))}
+                        {userData.me.friends.map(item => (
+                            <ul key={item._id}>
+                                <div>{item.username}</div>
+                            </ul>
+                        ))}
                     </div>
-                    
+
                 </div>
                 <Footer />
-                
+
 
             </div>
-            
+
         </div>
     )
 }

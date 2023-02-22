@@ -24,6 +24,7 @@ socket.on('connect', () => {
 });
 
 const Messages = () => {
+  // const chatBoxRef = React.createRef()
   const navigate = useNavigate()
   if (!Auth.login) {
     navigate('/login')

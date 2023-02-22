@@ -13,25 +13,31 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const ProfilePage = () => {    
+const ProfilePage = () => {
 
-    let navigate = useNavigate()
+  let navigate = useNavigate()
 
-    const { username: userParam } = useParams();
+  if (!Auth.loggedIn()) {
+    navigate('/login')
+  }
+  const { username: userParam } = useParams();
 
-    const [updateUser] = useMutation(UPDATE_USER);
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-      variables: { username: userParam },
-    });
+  const [updateUser] = useMutation(UPDATE_USER);
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
 
 
-    const user = data?.me || data?.user || {};
+  const user = data?.me || data?.user || {};
 
-    
-    
-    if (!Auth.loggedIn()) {
-      navigate('/login')
-    }
+  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    return <Link to="/profile" />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
 
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Link to="/profile" />;
@@ -76,48 +82,69 @@ const ProfilePage = () => {
         navigate('/login')
 
       }
-    return (
-      <div className='loginWrapper'>
-        <div className='profileContainer'>
 
 
-          <div className='profileWrapper'>
+
+  const updateClick = async () => {
+    try {
+      await updateUser({
+        variables: { id: user._id },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
 
-          
-            <main className='userInfo'>
+  const signOff = () => {
 
-              <div className='boxWrapper'>
+    localStorage.clear()
+    console.log('Successfuly logged out.')
+    navigate('/login')
 
-                <div className='friendList'>
-                  <h2>Friends: </h2>
-                  <div className='line'></div>
-                  <FriendList 
-                    username={user.username}
-                    friendCount={user.friendCount}
-                    friends={user.friends}
-                  />
+  }
+  return (
+    <div className='loginWrapper'>
+      <div className='profileContainer'>
 
-                  <div className='changeName'>
-                    <button className='editButton' onClick={updateClick}>
-                      Update Profile
-                    </button>
-                  </div>
+
+        <div className='profileWrapper'>
+
+
+
+          <main className='userInfo'>
+
+            <div className='boxWrapper'>
+              <h1>{user.firstName} {user.lastName}</h1>
+              <div className='friendList'>
+                <h2>Friends: </h2>
+                <div className='line'></div>
+                <FriendList
+                  username={user.username}
+                  friendCount={user.friendCount}
+                  friends={user.friends}
+                />
+
+                <div className='changeName'>
+                  <button className='editButton' onClick={updateClick}>
+                    Update Profile
+                  </button>
                 </div>
-                
               </div>
-              
-              <button onClick={signOff} className='logout'>Sign out</button>
-              
 
-              
-            </main>
+            </div>
 
-          </div>
-          <Footer />
+            <button onClick={signOff} className='logout'>Sign out</button>
+
+
+
+          </main>
 
         </div>
+        <Footer />
+
       </div>
+    </div>
   )
 }
 
