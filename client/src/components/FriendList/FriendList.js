@@ -17,7 +17,6 @@ const FriendList = ({ friendCount, username, friends }) => {
   }
 
 
-
   return (
     <div>
       <h5>

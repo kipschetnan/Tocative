@@ -72,6 +72,12 @@
 
 }
 
+.searchInput {
+  margin-top: 20px;
+  margin-bottom: 15px;
+
+}
+
 .logout:hover {
     cursor: pointer;
     filter: brightness(90%);
