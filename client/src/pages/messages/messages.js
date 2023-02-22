@@ -15,7 +15,7 @@ import Auth from '../../utils/auth';
 import { Socket } from 'socket.io-client';
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:3001');
+const socket = io();
 
 console.log('Socket is:', socket)
 
