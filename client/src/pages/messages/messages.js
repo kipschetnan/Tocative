@@ -25,10 +25,6 @@ socket.on('connect', () => {
 });
 
 const Messages = () => {
-  const navigate = useNavigate()
-  if (!Auth.login) {
-    navigate('/login')
-  }
 
   const [messages, setMessages] = useState([])
 

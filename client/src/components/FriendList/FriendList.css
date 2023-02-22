@@ -4,3 +4,33 @@
     border: none;
     text-decoration: none;
 }
+
+.button {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(28, 130, 255);
+    outline: none;
+    cursor: pointer;
+    color: white;
+    width: 20%;
+}
+
+.collapseButton {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(28, 130, 255);
+    outline: none;
+    cursor: pointer;
+    color: white;
+    width: 25%;
+}
+
+.friend {
+    padding-top: 10px;
+}
+
+.friend p {
+    
+    color: gray;
+    font-size: 12px;
+}

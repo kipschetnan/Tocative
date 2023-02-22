@@ -91,17 +91,15 @@ const createRoom = () => {
                     </form>
 
                     {isFriend ? (<p></p>) : (<p className='notFriend'>User is not in your friends list.</p>)}
-
-                    <div className='friendList'>
-                        <h2>Friends List: </h2>
-                        {userData.me.friends.map(item => (
-                            <ul key={item._id}>
-                                <div>{item.username}</div>
-                            </ul>
-                        ))}
-                    </div>
-
                 </div>
+                {/* <div className='friendList2'>
+                    <h2>Friends List: </h2>
+                    {userData.me.friends.map(item => (
+                        <ul key={item._id}>
+                            <div>{item.username}</div>
+                        </ul>
+                    ))}
+                </div> */}
                 <Footer />
 
 
