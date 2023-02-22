@@ -9,12 +9,12 @@
     }
 
     .text{
-        color:#fcfcfc;
-    }
-    #label{
-        color:#fcfcfc;
+        color:#f0f2f5;
     }
 
+    #label{
+        color:#f0f2f5;
+      }
 
 .registerForm {
     width: 500px;
@@ -26,7 +26,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
     border-radius: 10px;
     background: #000000d0;
-    
 }
 
 .registerTitle {
