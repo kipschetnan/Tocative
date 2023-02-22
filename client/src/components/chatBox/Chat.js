@@ -23,15 +23,20 @@ const Chat = ( {name, id} ) => {
   console.log(url)
   return (
     <div key={id}>
-      <Link className='link' to={url} headerName='name'>
+    
         <div className='chatBox'>
             <div className='chatInfo'>
-                <h3> {name} </h3>
-                <p> {`>`} </p>
+              
+                <Link className='roomLink' to={url} headerName='name'>
+                  <h3 className='chatLink'> {name} </h3>
+                </Link>
+              
+
+                <button className='deleteChat' onClick={onDelete}>Delete</button>
             </div>
         </div>
-      </Link>
-      <button onClick={onDelete}>Delete</button>
+      
+      
     </div>
   )
 }
