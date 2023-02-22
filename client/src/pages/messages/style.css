@@ -44,9 +44,10 @@
 
 .exitLink {
   
-  color: black;
+  color: gray;
   transition: 0.2s;
   width: fit-content;
+  font-weight: lighter;
 }
 
 .exitLink:hover {
@@ -66,13 +67,14 @@
 }
 
 .messagesBody {
+  height: 50vh;
   background-color: #DBDBDB;
   overflow-x: hidden;
   overflow:-y hidden;
 }
 
 .bubbles {
-  padding: 15px;
+  padding: 15px 20px;
 }
 
 

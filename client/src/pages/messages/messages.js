@@ -16,7 +16,7 @@ import ScrollToBottom from 'react-scroll-to-bottom'
 import { Socket } from 'socket.io-client';
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:3001');
+const socket = io();
 
 console.log('Socket is:', socket)
 
@@ -27,6 +27,10 @@ socket.on('connect', () => {
 const Messages = () => {
 
   
+  // const chatBoxRef = React.createRef()
+  if (!Auth.login) {
+    navigate('/login')
+  }
 
   const [messages, setMessages] = useState([])
 
@@ -38,13 +42,8 @@ const Messages = () => {
     }
   })
 
-  useEffect(() => {
-    socket.on('message', (message) => {
-      setMessages((list) => [...messages, message])
-    })
   
-  }, [socket])
-
+  
   
   const onSubmit = async (event) => {
     event.preventDefault()
@@ -78,6 +77,8 @@ const Messages = () => {
   
 
   const navigate = useNavigate()
+
+
   if (!Auth.login) {
     navigate('/login')
   }
@@ -102,14 +103,16 @@ const Messages = () => {
   const chatRoomName = messages.map( (messageContent) => {
     if(userData.me.username === messageContent.sender) {
       
-    }else {
+    }
+    
+    else {
       roomName = messageContent.sender
+      console.log (`Currently chatting with: ${roomName}` )
+      return
     }
     
   })
 
-
-  let myUser = userData.me.username
 
 
 
@@ -120,7 +123,7 @@ const Messages = () => {
         <main className='liveChat'>
           <div className='headerRoom'>
             <Link className='exitLink' id='exitLink' to='/'>
-             Exit
+            X
             </Link>
             
             <h3 className='chatName'> { roomName }</h3>
@@ -137,7 +140,7 @@ const Messages = () => {
                 <div className='bubblesWrapper'>
                   {messages.map((messageContent) => {
                     if(userData.me.username === messageContent.sender) {
-                      return <SendMessage name='You' message={messageContent.messageText}/>
+                      return <SendMessage name='You: ' message={messageContent.messageText}/>
                     }else {
                       return <ReceiveMessage name={messageContent.sender} message={messageContent.messageText}/>
                     }

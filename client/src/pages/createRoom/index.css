@@ -38,3 +38,6 @@
     filter: brightness(90%);
 }
 
+.notFriend {
+    color: red;
+}
