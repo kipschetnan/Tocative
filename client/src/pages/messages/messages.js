@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import './style.css'
-import './Messages.js'
-import SendMessage from '../../components/SendMessage/SendMessage';
-import ReceiveMessage from '../../components/ReceiveMessage/ReceiveMessage';
+import './messages.js'
+import SendMessage from '../../components/sendMessage/SendMessage';
+import ReceiveMessage from '../../components/receiveMessage/ReceiveMessage';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation} from '@apollo/client'
