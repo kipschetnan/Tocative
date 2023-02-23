@@ -73,14 +73,8 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
-
-      const message = await Message.create({ ...args });
-
-      // await User.findByIdAndUpdate(
-      //   { _id: context.user._id },
-      //   { $push: { messages: message._id } },
-      //   { new: true }
-      // );
+      console.log(context.user)
+      const message = await Message.create({ ...args, sender: context.user._id });
 
       await Conversation.findByIdAndUpdate(
         { _id: args.conversation },

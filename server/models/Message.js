@@ -14,7 +14,7 @@ const messageSchema = new Schema(
             get: timestamp => dateFormat(timestamp)
         },
         sender: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             required: true
         },
         conversation: {
