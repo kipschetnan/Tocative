@@ -68,9 +68,12 @@ const createRoom = () => {
             });
             const convo = data.createConversation
             navigate(`/messages/${convo._id}`)
+            window.location.reload()
         } catch (e) {
             console.error(e);
         }
+        
+        
     }
 
     return (

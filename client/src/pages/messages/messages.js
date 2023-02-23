@@ -84,21 +84,21 @@ const Messages = () => {
   //  ---------------------
 
 
-  let roomName = ''
+  // let roomName = ''
 
-  const chatRoomName = messages.map( (messageContent) => {
-    if(userData.me.username === messageContent.sender) {
+  // const chatRoomName = messages.map( (messageContent) => {
+  //   if(userData.me.username === messageContent.sender) {
       
 
-    }
+  //   }
     
-    else {
-      roomName = messageContent.sender
-      console.log (`Currently chatting with: ${roomName}` )
-      return
-    }
+  //   else {
+  //     roomName = messageContent.sender
+  //     console.log (`Currently chatting with: ${roomName}` )
+  //     return
+  //   }
     
-  })
+  // })
 
 
   if (loading) return <p>Loading</p>
@@ -111,7 +111,7 @@ const Messages = () => {
             X
             </Link>
             
-            <h3 className='chatName'> { roomName }</h3>
+            {/* <h3 className='chatName'> { roomName }</h3> */}
           </div>
 
           <div className='chatBody'>
@@ -125,7 +125,7 @@ const Messages = () => {
                 <div className='bubblesWrapper'>
                   {messages.map((messageContent) => {
                     if(userData.me.username === messageContent.sender) {
-                      return <SendMessage name='You: ' message={messageContent.messageText}/>
+                      return <SendMessage name='You' message={messageContent.messageText}/>
 
                     }else {
                       return <ReceiveMessage name={messageContent.sender} message={messageContent.messageText}/>
