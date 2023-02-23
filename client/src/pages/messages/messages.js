@@ -27,7 +27,7 @@ socket.on('connect', () => {
 const Messages = () => {
   const navigate = useNavigate()
   // const chatBoxRef = React.createRef()
-  if (!Auth.loggedIn) {
+  if (!Auth.loggedIn()) {
     navigate('/login')
   }
 
@@ -50,7 +50,7 @@ const Messages = () => {
     console.log(convoId)
     try {
       const { data } = await addMessage({
-        variables: { messageText: messageText.messageText, conversation: convoId, sender: userData.me.username }
+        variables: { messageText: messageText.messageText, conversation: convoId }
       })
       console.log('This is data:', data)
       socket.emit('message', data.addMessage)
@@ -120,7 +120,7 @@ const Messages = () => {
               <div className='bubbles'>
                 <div className='bubblesWrapper'>
                   {messages.map((messageContent) => {
-                    if(userData.me.username === messageContent.sender) {
+                    if(userData.me._id === messageContent.sender) {
                       return <SendMessage name='You' message={messageContent.messageText}/>
 
                     }else {
