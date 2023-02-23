@@ -27,7 +27,7 @@ socket.on('connect', () => {
 const Messages = () => {
   const navigate = useNavigate()
   // const chatBoxRef = React.createRef()
-  if (!Auth.login) {
+  if (!Auth.loggedIn) {
     navigate('/login')
   }
 
@@ -70,10 +70,6 @@ const Messages = () => {
       messageText: event.target.value
     });
   };
-
- 
-
-
 
   if (userLoading) return <p>Loading logged in user...</p>;
   if (userError) {
