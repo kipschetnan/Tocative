@@ -3,9 +3,6 @@
     display: flex;
 }
 
-#label{
-  color:#fcfcfc;
-}
 
 .loginContainer {
     width: 100%;
@@ -24,9 +21,6 @@
     
 }
 
-#label{
-  color:#f0f2f5;
-}
 
 .formContainer {
     padding: 30px;
@@ -35,9 +29,8 @@
     align-self: center;
     border-radius: 8px;
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-     background: #000000d0;
     width: 100%;
-    background: #000000d0;
+   background-color: white;
 
 
 }
