@@ -32,7 +32,10 @@ const Messages = () => {
   }
 
   const [messages, setMessages] = useState([])
-
+  const [messageText, setMessageText] = useState({ messageText: ''})
+  const [addMessage, { error }] = useMutation(ADD_MESSAGE)
+  const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
+  
   const { convoId } = useParams();
   const { loading } = useQuery(QUERY_CONVERSATION, {
     variables: { id: convoId },
@@ -56,6 +59,7 @@ const Messages = () => {
     } catch (e) {
       console.error(e)
     }
+    setMessageText({messageText: ''})
 
   }
 
@@ -68,9 +72,8 @@ const Messages = () => {
   };
 
  
-  const [messageText, setMessageText] = useState({ messageText: ''})
-  const [addMessage, { error }] = useMutation(ADD_MESSAGE)
-  const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME);
+
+
 
   if (userLoading) return <p>Loading logged in user...</p>;
   if (userError) {
