@@ -74,7 +74,7 @@ const resolvers = {
         throw new AuthenticationError('You need to be logged in!');
       }
       console.log(context.user)
-      const message = await Message.create({ ...args, sender: context.user._id });
+      const message = await Message.create({ ...args });
 
       await Conversation.findByIdAndUpdate(
         { _id: args.conversation },
