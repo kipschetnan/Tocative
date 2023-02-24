@@ -44,6 +44,10 @@ const Messages = () => {
     }
   })
   
+  socket.on('message', (message) => {
+    setMessages([...messages, message])
+  })
+  
   const onSubmit = async (event) => {
     event.preventDefault()
     console.log(messageText)
