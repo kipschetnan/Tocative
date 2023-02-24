@@ -42,7 +42,14 @@ const Messages = () => {
     onCompleted: (data) => {
       setMessages(data.conversation.messages)
     }
-  })
+  })  
+  
+  const handleChange = (event) => {
+
+    setMessageText({
+      messageText: event.target.value
+    });
+  };
   
   socket.on('message', (message) => {
     setMessages([...messages, message])
@@ -58,7 +65,6 @@ const Messages = () => {
       })
       console.log('This is data:', data)
       socket.emit('message', data.addMessage)
-      setMessages([...messages, data.addMessage])
 
     } catch (e) {
       console.error(e)
@@ -67,12 +73,7 @@ const Messages = () => {
 
   }
 
-  const handleChange = (event) => {
 
-    setMessageText({
-      messageText: event.target.value
-    });
-  };
 
   if (userLoading) return <p>Loading logged in user...</p>;
   if (userError) {
