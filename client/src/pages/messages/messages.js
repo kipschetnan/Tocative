@@ -50,11 +50,11 @@ const Messages = () => {
     console.log(convoId)
     try {
       const { data } = await addMessage({
-        variables: { messageText: messageText.messageText, conversation: convoId }
+        variables: { messageText: messageText.messageText, conversation: convoId, sender: userData.me.username }
       })
       console.log('This is data:', data)
       socket.emit('message', data.addMessage)
-      setMessages((list) => [...messages, data.addMessage])
+      setMessages([...messages, data.addMessage])
 
     } catch (e) {
       console.error(e)
@@ -63,7 +63,6 @@ const Messages = () => {
 
   }
 
-  
   const handleChange = (event) => {
 
     setMessageText({
@@ -120,7 +119,7 @@ const Messages = () => {
               <div className='bubbles'>
                 <div className='bubblesWrapper'>
                   {messages.map((messageContent) => {
-                    if(userData.me._id === messageContent.sender) {
+                    if(userData.me.username === messageContent.sender) {
                       return <SendMessage name='You' message={messageContent.messageText}/>
 
                     }else {
